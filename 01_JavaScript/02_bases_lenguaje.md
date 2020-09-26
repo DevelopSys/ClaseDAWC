@@ -98,7 +98,7 @@ EJEMPLO DE FRASE NORMAL
 string
 ````
 
-Cuando se utilizan variables en J se pueden utilizar las siguiente palabra reservadas: 
+Cuando se utilizan variables en JS se pueden utilizar las siguiente palabra reservadas: 
 
 - let: es utilizado para un ámbito de bloque
 - var: es utilizado para un ámbito del archivo entero
@@ -148,6 +148,8 @@ Valor con var
 
 Se puede ver como aunque sea el mismo nombre de variable, como están declaradas con un ámbito diferente, son llamadas de forma diferente.
 De todas formas el uso diferenciado entre let y var ya no está muy diferenciado.
+
+Siempre que utilicemos una variable var va a poder ser accesible desde cualquier parte del script, y podremos utilizar la palabra reservada this. Sin embargo cuando se utilice una variable con let, esta tan solo existirá en el ámbito en la que ha sido creada. 
 
 ### Formato de salida
 
