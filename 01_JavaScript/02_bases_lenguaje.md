@@ -52,7 +52,7 @@ var sinValor = null;
 Var sinDefinir;
 ````
 
-Las variables tienen tienen un tipado dinámico
+Las variables tienen un tipado dinámico
 
 ````
 <script type="text/javascript">
@@ -77,6 +77,17 @@ Al igual que en cualquier lenguaje de programación se pueden realizar cambios d
         console.log("la suma es " + sumaDos); // la salida sería 2431.5
 ````
 
+Si no se indica nada, JS intenta realizar la mejora traducción posible entre todos los elementos. De esta forma la siguiente entrada obtendría la siguiente salida:
+
+````
+console.log(5 + 5);
+// salida 10
+console.log(5 + "7");
+// salida 57
+console.log(5 + 5 + "7");
+// salida 107
+````
+
 
 Adicionalmente al uso de las variables primitivas, existen las variables de datos complejos. Al igual que se vio en Java existen tipos complejos que nos ofrecen la posibilidad de acceder a métodos. Estas variables son String, Number, Boolean. Al igual que en java para poder crear tipos complejos se utiliza la palabra reservada new
 
@@ -97,6 +108,8 @@ object
 EJEMPLO DE FRASE NORMAL
 string
 ````
+
+Al igual que el uso del operador typeof es interesante ya que indica el tipo concreto de la variable, en ocasiones el uso de la función isNaN() puede resultar útil también. En este caso, la función indica si un argumento pasado es número o no (cuidado con la salida porque es la negación)
 
 Cuando se utilizan variables en JS se pueden utilizar las siguiente palabra reservadas: 
 
@@ -149,7 +162,7 @@ Valor con var
 Se puede ver como aunque sea el mismo nombre de variable, como están declaradas con un ámbito diferente, son llamadas de forma diferente.
 De todas formas el uso diferenciado entre let y var ya no está muy diferenciado.
 
-Siempre que utilicemos una variable var va a poder ser accesible desde cualquier parte del script, y podremos utilizar la palabra reservada this. Sin embargo cuando se utilice una variable con let, esta tan solo existirá en el ámbito en la que ha sido creada. 
+Siempre que utilicemos una variable var va a poder ser accesible desde cualquier parte del script, y podremos utilizar la palabra reservada this. Sin embargo cuando se utilice una variable con let, esta tan solo existirá en el ámbito en la que ha sido creada.        
 
 ### Formato de salida
 
@@ -180,6 +193,20 @@ var nombre = "Borja";
 var edad = 18;
 console.log(`Mi nombre es ${nombre} y tengo ${edad} años`);
 ````
+
+En el caso de utilizar el **template string** también podemos utilizar cualquier expresión código de JS que queramos
+
+````
+let nombre = "Borja";
+let edad = 17;
+let mayor;
+console.log(
+  `Mi nombre es ${nombre} y tengo una edad de ${edad}, ${
+    mayor ? edad > 18 : edad < 18
+  }`
+);
+````
+
 
 Adicionalmente se pueden utiliza caracteres especiales para indicar saltos de linea, tabulaciones, etc...
 
@@ -340,6 +367,31 @@ var ex2=(2==2)&&(3>=6);//false
 var ex3=(2>3)||(17<=40); //true
 var ex4 = false || false; // false
 ````
+
+## Operadores de objeto
+
+- . : utilizado cuando se quiere acceder a una característica o método declarado en el objeto.
+
+````
+let fechaAhora = new Date();
+console.log(fechaAhora);
+
+let fechaPasada = new Date(
+  fechaAhora.getFullYear() - 10,
+  fechaAhora.getMonth(),
+  fechaAhora.getDate()
+);
+console.log(fechaPasada);
+
+````
+
+- [] : utilizado para el acceso a arrays o elementos dentro de un objeto
+
+````
+numeros = [1, 2, 3, 4, 5, 6];
+console.log(numeros[0]);
+````
+
 
 [Volver al inicio](#indice)
 

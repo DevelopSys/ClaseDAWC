@@ -17,6 +17,29 @@ JavaScript (JS) se trata de un leguaje de programación web orientado a realizar
 
 Es importante tener en cuenta que no es obligatorio que las tres capas estén presentes
 
+Adicionalmente cuando se realiza un desarrollo, es necesario conocer cuales son las capaces generales que existen en el desarrollo:
+
+- Lado servidor (Back-End): tecnología ejecutada directamente en el servidor web. Para este tipo de ejecuciones, se necesita montar un servicio web con un lenguaje adecuado (nodejs - javascript // Django - Python ) el cual será llamado desde un navegador
+- Lado servidor (Front-End): tecnología que se ejecuta directamente en el software del cliente que quiere acceder al servicio (navegador web) mediante peticiones web. En este caso todos los datos no salen de la máquina cliente, teniendo que realizar una petición externa (AJAX) si se quieren obtener o manejar datos de servicios externos. 
+
+En cuanto a las tecnologías disponibles podemos diferenciar las siguientes:
+
+- Lado cliente: Html, Css. Javascript, DOM, JavaFX (Java) 
+- Lado servidor: Node.js (JavaScript), Django (Python), PHP, ASP 
+
+En cuanto al lado del cliente, vamos a ver JS ya que el lenguaje más utilizado en esta capa- Es necesario entender en que parte interviene JS dentro de las capas del desarrollo web:
+
+Capa Estructura (HTML --> DOM), Capa Presentación (CSS), **Capa Comportamiento (JS)**
+
+En nuestro caso JS actúa en la capa de comportamiento, ya que es capaz de tanto mostrar datos como de alterar el DOM de la página, mostrando - eliminando y/o modificando cualquier elemento existente en la misma.
+
+Al estar trabajando en un desarrollo web, siempre tenemos que tener presente las indicaciones W3C por lo que es necesario que todo desarrollo que realicemos pase la validación
+
+````
+https://validator.w3.org/
+````
+
+
 [Volver al inicio](#indice)
 
 ## Instalaciones y configuraciones necesarias <a name="instalacion"></a>
