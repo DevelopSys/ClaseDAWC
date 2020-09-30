@@ -41,7 +41,7 @@ let letra = "A";
 let palabraObjeto = new String("palabra objeto");
 let numeroObjeto = new Number(1);
 let variable;
-let varibleObjeto = {nombre:[{},{},{}],apellido:"asasd",edad:23};
+let varibleObjeto = { nombre: [{}, {}, {}], apellido: "asasd", edad: 23 };
 
 console.log(palabra);
 console.log(typeof palabra);
@@ -59,3 +59,30 @@ console.log(palabraObjeto);
 console.log(typeof palabraObjeto);
 
 console.log(variable);
+
+palabraObjeto = new String("palabra objeto");
+console.log(palabraObjeto);
+console.log(typeof palabraObjeto);
+console.log(palabraObjeto.valueOf());
+console.log(typeof palabraObjeto.valueOf());
+
+let objetoCompleto = {
+  nombre: "Borja",
+  apellido: "Martin",
+  mostrarDatos: () => {
+    console.log(this.nombre);
+  },
+};
+
+function ejemplo() {
+  console.log("ejemplo");
+}
+
+let funcion = () => {
+  console.log("ejemplo");
+};
+
+let unNumero = 43;
+console.log(isNaN(unNumero));
+
+let outerHeight = 1234567;
