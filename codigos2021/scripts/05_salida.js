@@ -174,3 +174,5 @@ liga[0].plantilla.forEach((element) => {
 
 //let arraydeArrays= [ [],[] ]
 let cosas = { nombres: [], apellidos: [] };
+
+//Math.random()*10;
