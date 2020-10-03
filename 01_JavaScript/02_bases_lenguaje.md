@@ -998,6 +998,14 @@ B) Utilizando un if
         sumaOptativa(5);
 ````
 
+C) De forma directa
+
+````
+function funcionDefecto(obligatorio, defecto = "defecto") {
+  console.log(`${obligatorio} ${defecto}`);
+}
+````
+
 
 - Uso de arguments o argumentos invisibles
 
