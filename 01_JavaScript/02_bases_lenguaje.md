@@ -1248,4 +1248,67 @@ parClaveValor.forEach((element) => {
 
 Algunas otras opciones del objeto son freeze, getOwnProperties, values 
 
+### Relación objeto funciones
+
+Como ya se ha visto antes en la parte de la declaración de funciones, estas pueden tener muchas formas tanto en parámetros como en retornos, y adicionalmente tienen una forma de comportarse especial cuando se trata de objetos. Alguna de estas formas son las siguientes
+
+Cuando se quiere crear un objeto desde una función lo primero que se nos puede ocurrir es el siguiente código:
+
+````
+function crearObjeto(param1, param2) {
+  return { nombre: param1, apellido: param2 };
+}
+
+let objeto = crearObjeto("Borja", "Martin");
+console.log(objeto);
+
+````
+
+Sin embargo esto no es del todo necesario siempre que se indique un parámetro que sea el nombre de la propiedad
+
+````
+"use strict";
+
+function crearObjeto(nombre, apellido) {
+  return { nombre, apellido };
+}
+let objeto = crearObjeto("Borja", "Martin");
+console.log(objeto);
+
+````
+
+Otra de las funciones que se permiten en la relación objeto - funciones es la de desectructurar un objetos. En el siguiente ejemplo se crea un método que saca determinadas propiedades
+
+````
+function sacarPropiedades({ nombre, fundacion, estadio }) {
+  console.log(nombre);
+  console.log(fundacion);
+  console.log(estadio);
+}
+````
+
+Es importante darse cuenta que los parámetros que se le pasan no son normales, sino que son en formato objeto (por los {}). A continuación, si se quiere llamar al método, solo tendremos que pasarle un objeto que tenga las propiedades indicadas como parámetros
+
+````
+let equipo = { nombre: "Barcelona", fundacion: 1890, estadio: "CampNou" };
+sacarPropiedades(equipo);
+````
+
+En el caso de intentar llamarlo normal y corriente:
+
+````
+sacarPropiedades("Barcelona", 123, "Camp Nou");
+
+````
+
+Daría un error de tipo undefined
+
+````
+undefined
+undefined
+undefined
+````
+
+
+
 [Volver al inicio](#indice)
