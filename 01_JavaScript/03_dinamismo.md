@@ -31,7 +31,7 @@ Imaginad el body de una página con la siguiente estructura
 <body>
 
     <h1>Titulo de JS impartido por Borja Martín</h1>
-    <p>Titulo correspondiente al primer curso de DAM del instituto CES Juan Pablo segundo de Formación profesional</p>
+    <p>Titulo correspondiente al segundo curso de DAW del instituto CES Juan Pablo segundo de Formación profesional</p>
     <div id="mi_div"></div>
     <script>
     </script>
