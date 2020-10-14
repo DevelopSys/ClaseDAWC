@@ -7,21 +7,44 @@
   </head>
   <body>
     <div class="container">
-      <input type="text" placeholder="nombre" />
-      <input type="text" placeholder="apellido" />
+      <input id="inputNombre" type="text" placeholder="nombre" />
+      <input id="inputApellido" type="text" placeholder="apellido" />
       <button onclick="funcionPulsar()">Añadir</button>
       <button onclick="funcionVaciar()">Vaciar</button>
       <div>
-        <ul>
-          <li>prueba</li>
-        </ul>
+        <h1>Lista 1</h1>
+        <ul id="listaNombres1"></ul>
+        <h1>Lista 2</h1>
+        <ul id="listaNombres2"></ul>
+        <h1>Lista 3</h1>
+        <ul id="listaNombres3"></ul>
       </div>
     </div>
+    <div>
+      <h1>Operaciones</h1>
 
-    <script>
-      function funcionPulsar() {
-        console.log("Boton pulsado");
-      }
-    </script>
+      <form id="formularioOperaciones">
+        <div>
+          <input type="number" placeholder="operando1" id="operando1" />
+          <input type="number" placeholder="operando2" id="operando2" />
+        </div>
+        <label for="suma">Suma</label
+        ><input id="suma" type="radio" name="operacion" value="1" />
+        <label for="resta">Resta</label
+        ><input id="resta" type="radio" name="operacion" value="2" />
+        <label for="multi">Multiplicación</label
+        ><input id="multi" type="radio" name="operacion" value="3" />
+        <label for="div">División</label
+        ><input id="div" type="radio" name="operacion" value="4" />
+      </form>
+
+      <button onclick="realizarOperacion()">Operar</button>
+      <h2>Lista operaciones</h2>
+      <ul id="listaOperaciones"></ul>
+    </div>
+    <script
+      src="./assets/scripts/01_ejericio.js"
+      type="text/javascript"
+    ></script>
   </body>
 </html>

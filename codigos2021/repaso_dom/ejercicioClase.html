@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header style="text-align: center">
+      <h1>Web dinamica con JS</h1>
+    </header>
+
+    <div class="container">
+      <p>
+        El número de hijos totales en el contenedor es de:
+        <b id="hijos_contenedor">0</b>
+      </p>
+
+      <div id="anadir_divs">
+        <button id="boton_agregar">Agregar elemento</button>
+
+        <form>
+          <label for="color_div">Color fondo</label>
+          <input type="color" id="color_div" />
+          <label for="color_fuente_div">Color texto</label>
+          <input type="color" id="color_fuente_div" />
+          <label>Texto del div</label>
+
+          <input type="text" id="texto_div" placeholder="introduce texto div" />
+          <label>Tamaño de fuente</label>
+
+          <input type="range" id="range_tamanio" min="6" max="50" />
+        </form>
+      </div>
+      <div id="borrar_divs">
+        <button id="boton_borrar">Borrar elemento</button>
+        <select id="select_borrar_div"></select>
+      </div>
+      <div id="info_divs">
+        <button id="boton_info">Informacion elemento</button>
+        <select id="select_info_div"></select>
+      </div>
+    </div>
+  </body>
+</html>
