@@ -29,3 +29,5 @@ function cargaInicial() {
     localStorage.clear();
   });
 }
+
+// HTML -- CSS -- DOM --  BOM -- BD (local // file // externa)
