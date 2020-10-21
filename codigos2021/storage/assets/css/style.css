@@ -1,0 +1,28 @@
+body{
+
+    background-color: #E5D4CE;
+    font-family: 'Lato', sans-serif;
+}
+
+.local_storage{
+
+    background-color: #DE6E4B;
+    color: white;
+    
+}
+.session_storage{
+
+    background-color: #1A936F;
+    color: white;
+    
+}
+.cookies{
+
+    background-color: #7D1D3F;
+    color: white;
+
+}
+
+.existentes{
+    background-color: #ffd972;
+}
