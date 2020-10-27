@@ -6,6 +6,7 @@ let input_lectura,
   boton_lectura,
   boton_multiple,
   boton_imagen,
+  boton_crear,
   lista_dos,
   div_imagenes;
 window.addEventListener("load", () => {
@@ -17,6 +18,7 @@ window.addEventListener("load", () => {
   boton_imagen = document.querySelector("#boton_tres");
   lista_dos = document.querySelector("#lista_dos");
   div_imagenes = document.querySelector("#imagenes_tres");
+  boton_crear = document.querySelector("#boton_crear");
   //console.log(input_lectura);
   //console.log(boton_lectura);
 
