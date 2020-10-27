@@ -1,0 +1,6 @@
+body {
+  background-color: rgb(1, 137, 44);
+  background-image: url(./assert/images/cabecera.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
