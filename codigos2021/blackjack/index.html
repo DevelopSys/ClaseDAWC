@@ -12,33 +12,34 @@
     />
     <link rel="stylesheet" href="./assert/css/style.css" />
     <script src="./assert/javascript/juego.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/underscore@1.11.0/underscore-min.js"></script>
   </head>
   <body>
     <div class="container-fluid m-5">
       <div class="row">
         <div class="col" style="text-align: center">
-          <button type="button" class="btn btn-primary" id="botonPedir">
+          <button type="button" class="btn btn-primary" id="boton_pedir">
             Pedir
           </button>
-          <button type="button" class="btn btn-primary" id="botonPlantarse">
+          <button type="button" class="btn btn-primary" id="boton_plantarse">
             Plantarse
           </button>
-          <button type="button" class="btn btn-primary" id="botonNuevpo">
+          <button type="button" class="btn btn-primary" id="boton_nuevo">
             Juego nuevo
           </button>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col">
-          <h1>
-            Juegador <b id="puntuacion_jugador"> 0 </b
+          <h1 id="nombre_jugador">
+            <b id="puntuacion_jugador"> 0 </b
             ><span class="thumb"
               ><img src="./assert/images/ficha-de-casino.png" />
             </span>
           </h1>
 
           <div style="height: 300px" id="cartas_jugador">
-            <img src="./assert/images/JC.png" style="height: 250px" />
+            <img src="./assert/images/JC.png" class="carta img-fluid" />
           </div>
         </div>
       </div>
