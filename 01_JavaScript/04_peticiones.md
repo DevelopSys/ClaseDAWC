@@ -98,6 +98,209 @@ Una vez que la promesa está creada se puede llamar igual que se ha hecho anteri
 
 Lo que hay que tener en cuenta en este código es que la promesa se ejecuta de forma asíncrona al resto de ejecuciones de la página, por lo que no bloquea ninguna acción. Para poder ver esta funcionalidad se ha incorporado una llamada a la función setTimeout
 
+Del mismo modo que se pueden crear promesas con un objeto de tipo new Promise, también se pueden crear indicando a la función que es de tipo Async. En este caso creamos una función que busca en un array un elemento concreto y devuelve el objeto en el resolve si lo encuentra
+
+````
+export function buscarCoche(marca) {
+  let encontrado = coches[marca];
+
+  return new Promise((resolve, reject) => {
+    if (encontrado) {
+      resolve(encontrado);
+    } else {
+      reject("no encontrado");
+    }
+  });
+}
+````
+
+Cuando esta promesa se quiere tratar en algún sitio simplemente hay que pedir la marca y utilizar el then (para el caso correcto) y el catch (para el caso no resuelto)
+
+````
+buscarCoche("focus")
+  .then((coche) => {
+    console.log(`el coche encontrado es ${coche.valor}`);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+````
+
+En el caso de utiliza la palabra reservada async en la función no sería necesario indicar de forma explicita en la funcion que retorne una promesa ya que se da por hecho. En este caso no podemos utilizar la palabra reservada resolver ni reject (ya que no están como parte de la función de flecha). Lo que se utiliza es el return para el caso correcto y el throw para el caso incorrecto.
+
+````
+export async function buscarCocheAsync(marca) {
+  let encontrado = coches[marca];
+
+  if (encontrado) {
+    return encontrado;
+  } else {
+    throw "error";
+  }
+}
+````
+
+Y a la hora de tratarlo se hace como cualquier promesa al uso
+
+````
+buscarCocheAsync("Mercedes")
+  .then((data) => {
+    console.log(`El coche entontrado es: ${data}`);
+  })
+  .catch((err) => {
+    console.log("No se ha encontrado el coche con la marca indicada");
+  });
+````
+
+Otro elemento que se suele utilizar es la palabra reservada away. Este elemento permite una "contestación" postergada cuando se realiza una promesa, respondiendo directamente con el elemento, sin necesidad de tratar el then. 
+
+````
+export async function evaluarCoche(marca) {
+  let coche = await buscarCoche(marca);
+  console.log(coche);
+}
+````
+
+
+Se utiliza mucho cuando se realizan peticiones a base de datos que pueden tardar más de lo normal. Se supone el caso de querer hacer muchas promesas de golpe y que se pueda tratar la respuesta de todas ellas. Con lo que sabemos hasta ahora podríamos hacer lo siguiente 
+
+````
+function getCochesTodos() {
+  let coches = [];
+  for (let index = 0; index < cocheMarcas.length; index++) {
+    const element = cocheMarcas[index];
+    buscarCoche(element).then((data)=>{this.coches.push(data)})
+  }
+  return coches;
+}
+
+````
+
+Siguiente el ejemplo de antes podríamos hacer esto, recorriendo un array con los elementos sobre los que se quieren hacer peticiones. Esto en principio está bien, lo malo que tiene es que al ser promesas no todas contestan de golpe, por lo que se va a retornar no es exactamente el resultado. Lo que se hace es utiliza la palabra await para que cada promesa se realice con tranquilidad y cuando se termine se realice con ella lo que se quiera
+
+````
+export async function getCochesTodos() {
+  let coches = [];
+
+  for (let index = 0; index < cocheMarcas.length; index++) {
+    let coche;
+    const element = cocheMarcas[index];
+    let coche = await buscarCoche(element);
+    coches.push(coche);
+  }
+  return coches;
+}
+````
+
+Es importante tener en cuenta que si se utiliza la palabra reservada await, es necesario que sea sobre una función que es async. En el sitio donde se quiera utilizar se realiza la extracción de la promesa (ya que es lo que ha retornado)
+
+````
+getCochesTodos().then((data) => {
+  console.log(data);
+});
+
+````
+
+De esta forma se resuelven las promesas de una en una. Lo malo que tiene esto es que en cada promesa se espera a que se resuelva para que pase a la siguiente. Si utilizamos el método Promise.all es posible resolver todas las promesas de golpe.
+
+````
+export async function getCochesTodosMejorado() {
+  let coches = [];
+
+  cocheMarcas.forEach((element) => {
+    coches.push(buscarCocheAsync(element));
+  });
+
+  return await Promise.all(coches);
+}
+````
+
+O lo que es lo mismo (incluso más eficiente):
+
+````
+export async function getCochesTodosMejorado() {
+  return await Promise.all(cocheMarcas.map((id) => buscarCoche(id)));
+}
+````
+
+Y en el elemento donde llame al método resolver la promesa
+
+````
+getCochesTodos().then((data) => {
+  console.log(data);
+});
+
+````
+
+En este caso me vale para resolver la promesa en el js principal. En el caso de querer resolver la promesa en el método y devolver el elemento pero sin penalizar el tiempo podríamos hacer lo siguiente
+
+````
+export async function getCochesTodosMejorado2() {
+  let coches = [];
+
+  coches = await Promise.all(cocheMarcas.map((marca) => buscarCoche(marca)));
+
+  coches.forEach((element) => {
+    console.log(element);
+  });
+}
+````
+
+Con la creación de un array donde se guardan todas las promesas (con el await) para que sean todas resueltas y evaluarlas en el propio método. En el js principal tan solo sería necesario llamar al método
+
+````
+getCochesTodosMejorado2();
+````
+
+En vez de crear el array y luego recorrerlo se puede poner todo junto en el método de la siguiente forma.
+
+````
+export async function getCochesTodosMejorado2() {
+  let coches = [];
+  let promesasTodas = cocheMarcas.map((marca) => buscarCoche(marca));
+
+  for await (const item of promesasTodas) {
+    console.log(item);
+  }
+}
+
+````
+
+En este caso se crea un array de promesas y con un for of se recorre. Es importante ver que en cada recorrido se obtiene directamente el elemento, ya que se hace esperando con el await, de forma que se hace secuencias. 
+
+Como se ha visto, es posible realizar tareas con cada una de las promesas de forma diferente, dependiendo en todas ellas el tiempo de carga. Otra de las posibilidades es encadenar promesas, ejecutando la siguiente promesa al terminar la primera. Para ello lo que realmente se hace es ejecutar then anidados, teniendo en cuenta la respuesta del then anterior
+
+````
+promesa.then(loquesea).then(loquesea2, dependiendo de lo anterior)
+````
+
+O lo que es lo mismo
+
+````
+buscarCocheEncadenado("focus")
+  .then((data) => data)
+  .then((data) => {
+    console.log("Log de la promesa secundaria");
+    console.log(data);
+  });
+````
+
+El segundo then obtiene como parámetros lo que ha devuelvo el primer then. Hay que tener en cuanta la sintaxis de este tipo de encademiento, ya que en el caso de tener varias filas la primera promesa es necesario ponerla entre llaves y utilizar la palabra return
+
+````
+buscarCocheEncadenado("focus")
+  .then((data) => {
+    console.log("Log de de la primera promesa");
+    return data;
+  })
+  .then((data) => {
+    console.log("Log de la promesa secundaria");
+    console.log(data);
+  });
+````
+
+Esto es bastante útil cuando una promesa depende de otra.
+
 [Volver al inicio](#index)
 
 
