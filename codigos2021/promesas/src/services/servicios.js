@@ -47,3 +47,20 @@ export function getCoche(matricula) {
 
   //console.log(cocheEncontrado);
 }
+
+export async function getCocheAsync(matricula) {
+  let cocheEncontrado;
+  coches.forEach((element) => {
+    if (element.matricula == matricula) {
+      cocheEncontrado = element;
+      //break;
+    }
+  });
+
+  if (cocheEncontrado) {
+    return "Coche encontrado";
+  } else {
+    throw "Error";
+  }
+  //console.log(cocheEncontrado);
+}

@@ -1,13 +1,20 @@
 import "./style.css";
-import { promesa, getCoche, getData } from "./services/servicios";
+import {
+  promesa,
+  getCoche,
+  getData,
+  getCocheAsync,
+} from "./services/servicios";
 
+import { buscarCocheAsync, getAllCoches } from "./services/servicio_async";
+/*
 promesa
   .then((data) => {
     console.log(`El numero generado es: ${data}`);
   })
   .catch((err) => {
     console.log(err);
-  });
+  });*/
 
 //getCoche("1234HDZ");
 
@@ -29,16 +36,12 @@ getCoche("2345RFT")
     console.log(err);
   });*/
 
-/*Promise.all([getCoche("asdasdasd"), getCoche("asdasdasd")])
-  .then(([resultado1, resultado2]) => {
-    console.log(resultado1.code);
-    console.log(resultado2.code);
-  })
+/*
   .catch((err) => {
     console.log(err);
   });*/
 
-Promise.race([getCoche("1234HDZ"), getCoche("4567GFD")])
+/*Promise.race([getCoche("1234HDZ"), getCoche("4567GFD")])
   .then((resultado) => {
     console.log(resultado);
     //console.log(resultado2.code);
@@ -46,4 +49,28 @@ Promise.race([getCoche("1234HDZ"), getCoche("4567GFD")])
   .catch((err) => {
     console.log(err);
   });
-$.post("url", data, function (data, textStatus, jqXHR) {}, "dataType");
+$.post("url", data, function (data, textStatus, jqXHR) {}, "dataType");*/
+
+/*getCoche("ford")
+  .then((data) => {})
+  .catch((err) => {});*/
+
+/*getCocheAsync("1234HDZ")
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });*/
+
+console.time();
+getAllCoches()
+  .then((data) => {
+    console.log("Resolución");
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log("asdasd");
+  });
+console.timeEnd();
+console.log("Otra");
