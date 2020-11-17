@@ -445,121 +445,52 @@ var update = injectStylesIntoStyleTag_default()(style/* default */.Z, options);
 
 
 /* harmony default export */ const src_style = (style/* default.locals */.Z.locals || {});
-// CONCATENATED MODULE: ./src/services/servicios.js
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function funcionCallback(nombre, callback) {
-  console.log(nombre);
-  callback();
-}
-
-funcionCallback("Borja", function () {
-  console.log("Ejecucion secundaria");
-});
-var promesa = new Promise(function (resolve, reject) {
-  setTimeout(function () {
-    var numero = Math.random() * 20;
-    console.log(numero);
-
-    if (numero < 10) {
-      reject("Error en la promesa");
-    } else {
-      resolve(numero);
-    }
-  }, 3000);
-});
-var coches = [{
-  marca: "Ford",
-  modelo: "Focus",
-  matricula: "1234HDZ"
-}, {
-  marca: "Seat",
-  modelo: "Ibiza",
-  matricula: "2345RFT"
-}, {
-  marca: "Audi",
-  modelo: "a3",
-  matricula: "4567GFD"
-}, {
-  marca: "Mercedes",
-  modelo: "c220",
-  matricula: "5678IUY"
-}];
-function getCoche(matricula) {
-  var cocheEncontrado;
-  coches.forEach(function (element) {
-    if (element.matricula == matricula) {
-      cocheEncontrado = element; //break;
-    }
-  });
-  return new Promise(function (resolve, reject) {
-    if (cocheEncontrado) {
-      setTimeout(function () {
-        resolve({
-          code: 1,
-          message: "correct",
-          data: cocheEncontrado
-        });
-      }, 2000);
-    } else {
-      reject({
-        code: 0,
-        message: "error"
-      });
-    }
-  }); //console.log(cocheEncontrado);
-}
-function getCocheAsync(_x) {
-  return _getCocheAsync.apply(this, arguments);
-}
-
-function _getCocheAsync() {
-  _getCocheAsync = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(matricula) {
-    var cocheEncontrado;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            coches.forEach(function (element) {
-              if (element.matricula == matricula) {
-                cocheEncontrado = element; //break;
-              }
-            });
-
-            if (!cocheEncontrado) {
-              _context.next = 5;
-              break;
-            }
-
-            setTimeout(function () {
-              return {
-                code: 1,
-                message: "correct",
-                data: cocheEncontrado
-              };
-            }, 2000);
-            _context.next = 6;
-            break;
-
-          case 5:
-            throw {
-              code: 0,
-              message: "error"
-            };
-
-          case 6:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee);
-  }));
-  return _getCocheAsync.apply(this, arguments);
-}
 // CONCATENATED MODULE: ./src/index.js
 ;
+
+/*import {
+  realizarPromesa,
+  realizarPromesaAsync,
+  realizarPromesasTodasMejorado,
+  realizarPromesasTodasMejoradoSimplificado,
+  realizarPromesaTodas,
+} from "./services/promesas_todas";
+
+console.time("normal");
+realizarPromesa("5678IUY")
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+console.timeEnd("normal");
+
+console.time("asyn");
+realizarPromesaAsync("5678IUY").then(console.log).catch(console.log);
+console.timeEnd("asyn");
+
+console.time("todas");
+realizarPromesaTodas().then(console.log);
+console.timeEnd("todas");
+
+console.time("todasJuntas");
+realizarPromesasTodasMejorado().then(console.log);
+console.timeEnd("todasJuntas");
+
+console.time("todasSimple");
+realizarPromesasTodasMejoradoSimplificado().then(console.log);
+console.timeEnd("todasSimple");
+//realizarPromesa();
+
+/*import {
+  promesa,
+  getCoche,
+  getData,
+  getCocheAsync,
+} from "./services/servicios";
+
+import { buscarCocheAsync, getAllCoches } from "./services/servicio_async";*/
 
 /*
 promesa
@@ -589,11 +520,7 @@ getCoche("2345RFT")
     console.log(err);
   });*/
 
-/*Promise.all([getCoche("asdasdasd"), getCoche("asdasdasd")])
-  .then(([resultado1, resultado2]) => {
-    console.log(resultado1.code);
-    console.log(resultado2.code);
-  })
+/*
   .catch((err) => {
     console.log(err);
   });*/
@@ -612,11 +539,13 @@ $.post("url", data, function (data, textStatus, jqXHR) {}, "dataType");*/
   .then((data) => {})
   .catch((err) => {});*/
 
-getCocheAsync("1234HDZ").then(function (data) {
-  console.log(data);
-})["catch"](function (err) {
-  console.log(err);
-});
+/*getCocheAsync("1234HDZ")
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });*/
 })();
 
 /******/ })()
