@@ -1,5 +1,42 @@
 import "./style.css";
-import { getCocheMatricula } from "./services/repaso_promesas";
+import {
+  getAllCoches,
+  getCocheMatricula,
+  getCocheMatriculaAsync,
+  getAllCochesAwait,
+} from "./services/repaso_promesas";
+
+console.time("normal");
+getCocheMatricula("ASDASD")
+  .then((datos) => {
+    console.log(`El coche encontrado es ${datos}`);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+console.timeEnd("normal");
+
+console.time("async");
+getCocheMatriculaAsync("4567GFD")
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+console.timeEnd("async");
+
+console.time("todos");
+getAllCoches().then((datos) => {
+  console.log(datos);
+});
+console.timeEnd("todos");
+
+console.time("todosAwait");
+getAllCochesAwait().then((datos) => {
+  console.log(datos);
+});
+console.timeEnd("todosAwait");
 
 /*import {
   realizarPromesa,
