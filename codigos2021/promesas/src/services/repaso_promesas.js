@@ -7,6 +7,8 @@ let coches = [
   { marca: "Mercedes", modelo: "c220", matricula: "5678IUY" },
 ];
 
+// new Coche("asd","asd","asd")
+
 export function getCocheMatricula(matricula) {
   let cocheEncontrado;
   coches.forEach((element) => {
@@ -57,9 +59,24 @@ export async function getAllCochesAwait() {
   let cochesPromesas = [];
 
   coches.forEach((element) => {
-    let coche = getCocheMatricula(element.matricula);
+    let coche = getCocheMatriculaAsync(element.matricula);
     cochesPromesas.push(coche);
   });
 
   return await Promise.all(cochesPromesas);
+}
+
+export async function getCocheMatriculaAsyncAwait(matricula) {
+  let cocheEncontrado;
+  coches.forEach((element) => {
+    if (element.matricula === matricula) {
+      cocheEncontrado = element;
+    }
+  });
+
+  if (cocheEncontrado) {
+    return await cocheEncontrado;
+  } else {
+    throw `No entrado coche con matrícula ${matricula}`;
+  }
 }
