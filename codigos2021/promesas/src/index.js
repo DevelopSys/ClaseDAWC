@@ -10,41 +10,6 @@ import { getArticulos } from "./services/conexiones_http";
 
 //getArticulos();
 
-fetch(
-  "http://newsapi.org/v2/top-headlines?country=us&apiKey=3b9f157a5b75463189508b079bdbb25f"
-)
-  .then((data) => {
-    return (data = data.json());
-  })
-  .then(({ articles }) => {
-    articles.forEach((element) => {
-      console.log(element.url);
-    });
-  });
-
-fetch(
-  `https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?c=England`
-)
-  .then((data) => {
-    return (data = data.json());
-  })
-  .then(({ countrys }) => {
-    countrys.forEach((element) => {
-      console.log(element);
-    });
-  });
-fetch(
-  "https://cors-anywhere.herokuapp.com/https://api.burgerking.de/api/o2uvrPdUY57J5WwYs6NtzZ2Knk7TnAUY/v3/de/de/tiles/"
-)
-  .then((data) => {
-    return (data = data.json());
-  })
-  .then((data) => {
-    data.forEach((element) => {
-      console.log(element);
-    });
-  });
-
 /*console.time("normal");
 getCocheMatricula("ASDASD")
   .then((datos) => {
