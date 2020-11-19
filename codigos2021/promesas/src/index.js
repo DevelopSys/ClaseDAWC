@@ -6,10 +6,63 @@ import {
   getAllCochesAwait,
   getCocheMatriculaAsyncAwait,
 } from "./services/repaso_promesas";
-import { getArticulos } from "./services/conexiones_http";
+import { getArticulos, getArticulosAjax } from "./services/conexiones_http";
+
+/*fetch(
+  "http://newsapi.org/v2/top-headlines?country=us&apiKey=3b9f157a5b75463189508b079bdbb25f"
+)
+  .then((data) => {
+    return (data = data.json());
+  })
+  .then(({ articles }) => {
+    console.log(articles);
+    articles.forEach((element) => {
+      pintarArticulo(element);
+    });
+  });*/
+
+/*getArticulos()
+  .then(({ articles }) => {
+    console.log(articles);
+  })
+  .catch((err) => {
+    console.log(err);
+  });*/
+
+$.ajax({
+  type: "GET",
+  url:
+    "http://newsapi.org/v2/top-headlines?country=us&apiKey=3b9f157a5b75463189508b079bdbb25fasdads",
+  data: "",
+  dataType: "json",
+  success: function (response) {
+    //console.log(response.articles);
+    response.articles.forEach((element) => {
+      pintarArticulo(element);
+    });
+  },
+  error: (status) => {
+    console.log("Error");
+  },
+  complete: (status) => {
+    console.log("Completado");
+  },
+});
+
+$.ajax({
+  type: "POST",
+  url: "https://reqres.in/api/users",
+  data: {
+    name: "morpheus",
+    job: "leader",
+  },
+  dataType: "json",
+  success: function (response) {
+    response;
+  },
+});
 
 //getArticulos();
-
 /*console.time("normal");
 getCocheMatricula("ASDASD")
   .then((datos) => {
@@ -58,21 +111,21 @@ $("#busqueda_boton").click(function (e) {
 getCocheMatriculaAsyncAwait("asd")
   .then((data) => console.log(data))
   .catch(console.log);
-//pintarCoche();
+//pintarCoche();*/
 
-function pintarCoche(coche) {
+function pintarArticulo(articulo) {
   $(".row").append(`<div class="card" style="width: 18rem">
-  <img src="..." class="card-img-top" alt="..." />
+  <img src=${articulo.urlToImage} class="card-img-top" alt="..." />
   <div class="card-body">
-    <h5 class="card-title">${coche.modelo}</h5>
+    <h5 class="card-title">${articulo.title}</h5>
     <p class="card-text">
-    ${coche.modelo}
+    ${articulo.description}
     </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="${articulo.url}" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>`);
 }
-*/
+
 /*import {
   realizarPromesa,
   realizarPromesaAsync,
