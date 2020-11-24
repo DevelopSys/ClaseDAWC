@@ -6,7 +6,41 @@ import {
   getAllCochesAwait,
   getCocheMatriculaAsyncAwait,
 } from "./services/repaso_promesas";
-import { getArticulos, getArticulosAjax } from "./services/conexiones_http";
+import {
+  createUser,
+  getArticulos,
+  getArticulosAjax,
+  getUsers,
+  getUsersRandom,
+} from "./services/conexiones_http";
+
+window.metodoEjecutar = metodoEjecutar;
+
+/*$("#busqueda_boton").click(function (e) {
+  //e.preventDefault();
+  let usuarios = document.querySelector("#busqueda_texto").value;
+  //console.log(usuarios);
+  getUsersRandom(usuarios).then((data) => {
+    console.log(data.results);
+  });
+});*/
+
+function metodoEjecutar() {
+  console.log("boton pulsado");
+}
+
+/*getUsersRandom().then((data) => {
+  console.log(data.results);
+});*/
+
+// tener los usuarios;
+/*getUsers().then((data) => {
+  console.log(data);
+});
+
+createUser({ name: "morpheus", job: "leader" }).then((data) => {
+  console.log(data);
+});
 
 /*fetch(
   "http://newsapi.org/v2/top-headlines?country=us&apiKey=3b9f157a5b75463189508b079bdbb25f"
@@ -29,7 +63,7 @@ import { getArticulos, getArticulosAjax } from "./services/conexiones_http";
     console.log(err);
   });*/
 
-$.ajax({
+/*$.ajax({
   type: "GET",
   url:
     "http://newsapi.org/v2/top-headlines?country=us&apiKey=3b9f157a5b75463189508b079bdbb25fasdads",
@@ -52,15 +86,11 @@ $.ajax({
 $.ajax({
   type: "POST",
   url: "https://reqres.in/api/users",
-  data: {
-    name: "morpheus",
-    job: "leader",
-  },
   dataType: "json",
   success: function (response) {
     response;
   },
-});
+});*/
 
 //getArticulos();
 /*console.time("normal");
@@ -121,7 +151,7 @@ function pintarArticulo(articulo) {
     <p class="card-text">
     ${articulo.description}
     </p>
-    <a href="${articulo.url}" class="btn btn-primary">Go somewhere</a>
+    <button class="btn btn-primary" onclick="mostrarElemento(id)">Go somewhere</button>
   </div>
 </div>`);
 }
