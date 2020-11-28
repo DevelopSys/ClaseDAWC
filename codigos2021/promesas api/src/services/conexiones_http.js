@@ -10,6 +10,6 @@ export async function getAllUsers(numero) {
 }
 
 export async function getUserByUUID(uuid) {
-  let respuesta = await $.get(`${urlRandom}?email=${uuid}`, "json");
+  let respuesta = await $.get(`${urlRandom}?uuid=${uuid}`, "json");
   return respuesta;
 }
