@@ -6,7 +6,7 @@ Para este ejemplo se creará una base de datos de proyectos de forma que se pued
 
 Para poder crear el proyecto existen dos posibilidades: crear el proyecto a mano o utilizar un generador de proyectos base como express-generator. Hay que tener en cuenta que es necesario tener instalado el módulo para poder utilizarlo
 
-````
+```
 npm install -g express-generator
 ````
 
@@ -26,6 +26,18 @@ Esta operación creará el proyecto con toda la estructura necesaria. Recordad q
 
 
 Para poder comprobar que todo funciona correctamente se ejecuta el comando npm start. Es recomendable instalar el módulo nodemon para poder ver la compilación a tiempo real.
+
+````
+npm install nodemon --save-dev
+````
+
+Y modificar el script de arranque para que ejecute el paquete instalado
+
+````
+"start": "nodemon ./bin/www"
+````
+
+Al ejecutar el comando npm start se creará un servidor en el puerto 3000 que resolverá las peticiones.
 
 Como se va a trabajar con base de datos MySql, se va a utilizar el módulo mysql para conectar con la base de datos y tratar los datos.
 
