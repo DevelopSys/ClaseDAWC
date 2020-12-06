@@ -1,17 +1,11 @@
 const express = require("express");
+const controladorAPI = require("../controller/controllerApi");
 const routes = express.Router();
+const controladora = require("../controller/controllerApi");
 
-routes.get("/add", (req, res, next) => {
-  res.send({ code: 1, message: "conexion ok" });
-});
-routes.get("/add/:id?", (req, res, next) => {
-  res.send({ code: 1, message: "conexion add con parametros" });
-});
-routes.get("/delete", (req, res, next) => {
-  res.send({ code: 1, message: "conexion ok borrado" });
-});
-routes.get("/update", (req, res, next) => {
-  res.send({ code: 1, message: "conexion ok update" });
-});
+routes.get("/add", controladorAPI.add);
+routes.get("/delete", controladorAPI.delete);
+routes.get("/update", controladorAPI.update);
+routes.get("/select", controladorAPI.select);
 
 module.exports = routes;
