@@ -3,7 +3,7 @@ const mysql = require("mysql");
 let conexion = {
   getConnection: () => {
     return mysql.createConnection({
-      host: "192.168.64.3",
+      host: "192.168.64.2",
       user: "adminAPI",
       password: "adminAPI",
       database: "jugadores",

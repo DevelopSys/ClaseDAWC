@@ -2,50 +2,101 @@ const baseDatos = require("./controllerDB");
 
 let controladorAPI = {
   add: (req, res, next) => {
-    /*res
-      .status(200)
-      .send({ code: 1, message: "Conexion correcta add desde controladora" });*/
-
-    // insertar en base de datos
-
+    // trabajo con body
     let conexionDB = baseDatos.getConnection();
-    conexionDB.connect((err, args) => {
-      if (err) {
-        return res
+    let paramentros = req.body;
+    //console.log(paramentros);
+    conexionDB.connect((error) => {
+      if (error) {
+        res
           .status(500)
-          .send({ code: 1, message: "El servidor con ha constestado bien" });
+          .send({ code: 1, message: "Error en la conexion", data: error });
       } else {
-        conexionDB.query(
-          "INSERT INTO jugador (nombre,posicion,valor) VALUE (?,?,?)",
-          ["borja", "delantero", 1000],
-          (err, res1) => {
-            if (err) {
-              return res.status(400).send({
-                code: 1,
-                message: "Error a la hora de hacer la inserción",
-                data: err,
-              });
-            } else {
-              return res
-                .status(200)
-                .send({ code: 2, message: "Insercion correcta", data: res1 });
+        if (paramentros.nombre && paramentros.posicion && parametros.valor) {
+          conexionDB.query(
+            "INSERT INTO jugador (nombre,posicion,valor) VALUES (?,?,?)",
+            [paramentros.nombre, paramentros.posicion, paramentros.valor],
+            (errQuery, dataQuery) => {
+              if (errQuery) {
+                res.status(400).send({
+                  code: 2,
+                  message: "Error en la query",
+                  data: errQuery,
+                });
+              } else {
+                res.status(200).send({
+                  code: 5,
+                  message: "datos agregados correctamente",
+                  data: dataQuery,
+                });
+              }
             }
-          }
-        );
+          );
+        } else {
+          res
+            .status(400)
+            .send({ code: 3, message: "Falta algún parámetrs", data: error });
+        }
+
+        conexionDB.end();
       }
     });
   },
-  remove: (req, res, next) => {
-    res.status(200).send({
-      code: 1,
-      message: "Conexion correcta remove desde controladora",
-    });
-  },
   select: (req, res, next) => {
-    res.status(200).send({
-      code: 1,
-      message: "Conexion correcta select desde controladora",
-    });
+    //console.log(req);
+    let parametros = req.params;
+    let conexionDB = baseDatos.getConnection();
+    //console.log(parametros);
+    //console.log(typeof parametros.id);
+    if (typeof parametros.id == "undefined") {
+      //res.status(200).send({ code: 3, message: "Faltan datos", data: null });
+      conexionDB.query("SELECT * from jugador", null, (errQuery, dataQuery) => {
+        res.status(200).send({
+          code: 2,
+          message: "query correcta con resultado",
+          data: dataQuery,
+        });
+      });
+    } else {
+      let conexionDB = baseDatos.getConnection();
+      conexionDB.connect((err) => {
+        if (err) {
+          res.status(500).send({
+            code: 2,
+            message: "Error en la conexion",
+            data: errQuery,
+          });
+        } else {
+          conexionDB.query(
+            "SELECT * FROM jugador WHERE id=?",
+            [parametros.id],
+            (erroQuery, dataQuery) => {
+              if (erroQuery) {
+                res.status(400).send({
+                  code: 2,
+                  message: "Error en la query",
+                  data: errQuery,
+                });
+              } else {
+                if (dataQuery.length > 0) {
+                  res.status(200).send({
+                    code: 2,
+                    message: "query correcta con resultado",
+                    data: dataQuery,
+                  });
+                } else {
+                  res.status(200).send({
+                    code: 4,
+                    message: "query correcta sin resultado",
+                    data: dataQuery,
+                  });
+                }
+              }
+            }
+          );
+        }
+      });
+    }
   },
   update: (req, res, next) => {
     res.status(200).send({
@@ -54,10 +105,25 @@ let controladorAPI = {
     });
   },
   delete: (req, res, next) => {
-    res.status(200).send({
+    let parametros = req.query;
+    console.log(parametros.id);
+
+    // DELETE FROM jugador WHERE id = parametros.id -->
+
+    let conexionDB = baseDatos.getConnection();
+    conexionDB.query(
+      "DELETE from jugador Where id =?",
+      [],
+      (errQuery, dataQuery) => {
+        // affectedRows > 0
+        //
+      }
+    );
+
+    /*res.status(200).send({
       code: 1,
       message: "Conexion correcta delete desde controladora",
-    });
+    });*/
   },
 };
 
