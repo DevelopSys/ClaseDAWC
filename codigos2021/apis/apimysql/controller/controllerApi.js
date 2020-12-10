@@ -12,7 +12,7 @@ let controladorAPI = {
           .status(500)
           .send({ code: 1, message: "Error en la conexion", data: error });
       } else {
-        if (paramentros.nombre && paramentros.posicion && parametros.valor) {
+        if (paramentros.nombre && paramentros.posicion && paramentros.valor) {
           conexionDB.query(
             "INSERT INTO jugador (nombre,posicion,valor) VALUES (?,?,?)",
             [paramentros.nombre, paramentros.posicion, paramentros.valor],
@@ -106,17 +106,28 @@ let controladorAPI = {
   },
   delete: (req, res, next) => {
     let parametros = req.query;
-    console.log(parametros.id);
+    //console.log(parametros.id);
 
     // DELETE FROM jugador WHERE id = parametros.id -->
 
     let conexionDB = baseDatos.getConnection();
     conexionDB.query(
       "DELETE from jugador Where id =?",
-      [],
+      [parametros.id],
       (errQuery, dataQuery) => {
-        // affectedRows > 0
-        //
+        if (dataQuery.affectedRows > 0) {
+          res.status(200).send({
+            code: 5,
+            message: "borrado realizado correctamente",
+            data: dataQuery,
+          });
+        } else {
+          res.status(200).send({
+            code: 4,
+            message: "no se ha podidio borrar, elemento no encontrado",
+            data: dataQuery,
+          });
+        }
       }
     );
 
