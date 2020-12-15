@@ -1,10 +1,14 @@
-// express --> Routes
-// importar controladora -- // importar mysql
+var express = require("express");
+var router = express.Router();
+var controladoraEquipo = require("../controladoras/controladoraEquipo");
 
-const express = require("express");
-const controladora = require("../controladoras/controladoraEquipo");
-let rutas = express.Router();
+// gestión de las rutas
 
-rutas.get("get", controladora.obtener);
+// obtener equipos
+router.get("/get/:id?", controladoraEquipo.obtener);
 
-// exportar la variable
+// agregar equipo
+
+// modificar equipo
+
+module.exports = router;
