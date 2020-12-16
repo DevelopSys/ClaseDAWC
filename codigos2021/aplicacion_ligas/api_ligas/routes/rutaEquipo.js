@@ -6,7 +6,7 @@ var controladoraEquipo = require("../controladoras/controladoraEquipo");
 
 // obtener equipos
 router.get("/get/:id?", controladoraEquipo.obtener);
-
+router.post("/add", controladoraEquipo.agregar);
 // agregar equipo
 
 // modificar equipo
