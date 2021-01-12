@@ -1,11 +1,24 @@
 let bodyTable = document.querySelector("tbody");
 let botonAgregar = document.querySelector("#botonEquipo");
+let botonPartido = document.querySelector("#botonPartido");
+let selectLocal = document.querySelector("#selectLocal");
+let selectVisitante = document.querySelector("#selectVisitante");
+let inputoGolesL = document.querySelector("#inputGolesLocales");
+let inputoGolesV = document.querySelector("#inputGolesVisitantes");
+
+console.log(selectLocal);
 
 window.addEventListener("load", () => {
   cargarClasificacion();
   botonAgregar.addEventListener("click", () => {
     let nombre = document.querySelector("#nombreEquipo").value;
     agregarEquipo(nombre);
+  });
+
+  botonPartido.addEventListener("click", () => {
+    agregarPartido();
+    console.log(selectLocal.value);
+    console.log(selectVisitante.value);
   });
 });
 
@@ -28,6 +41,14 @@ function cargarClasificacion() {
         <td>${element.goles_contra}</td>
         <td>${element.puntos}</td>
         </tr>`);
+
+        $("#selectLocal").append(
+          `<option value=${element.id}>${element.nombre}</option>`
+        );
+
+        $("#selectVisitante").append(
+          `<option value=${element.id}>${element.nombre}</option>`
+        );
       });
     });
 
@@ -62,4 +83,19 @@ function agregarEquipo(equipo) {
         <td>0</td>
         <td>0</td>
         </tr>`);
+}
+
+function agregarPartido(idL, gL, idV, gV) {
+  fetch(`http://localhost:3000/partido/add`, {
+    method: "POST",
+    ContentType: "application/json",
+    body: {
+      id_local: idL,
+      goles_local: gL,
+      id_visitante: idV,
+      goles_visitante: gV,
+    },
+  })
+    .then((data) => data.json())
+    .then((data) => console.log("Partido agregado correcto"));
 }
