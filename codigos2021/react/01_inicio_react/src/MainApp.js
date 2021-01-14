@@ -1,17 +1,30 @@
+import ComponenteFor from "./components/ComponenteFor";
+import ComponenteIf from "./components/ComponenteIf";
+import ComponenteSwitch from "./components/ComponenteSwitch";
+
 // fc
-const MainApp = ({ nombre }) => {
-  let fechaDia = new Date().getDate();
-  let fechaMes = new Date().getMonth();
-  let fechaAnio = new Date().getFullYear();
-  let fechaSegundos = new Date().getSeconds();
+const MainApp = () => {
+  let nombre = "Borja";
+  let numeroIf = 9;
+  let numeroSwitch;
+  let numeroFor = 12;
 
   return (
     <div className="container mt-4">
       <h1>Primer componente funcional</h1>
-      <p>Componente realizado por {nombre}</p>
-      <footer>
-        La fecha de realizacion es {fechaDia}/{fechaMes + 1}/{fechaAnio}
-      </footer>
+      <p>Proyecto realizado por {nombre} las estructuras de control son:</p>
+      <div className="row">
+        <div className="col">
+          <ComponenteIf numeroIf={numeroIf} titulo="" />
+        </div>
+        <div className="col">
+          <ComponenteSwitch numeroSwitch={numeroSwitch} titulo="" />
+        </div>
+
+        <div className="col">
+          <ComponenteFor titulo="Componente For" numeroFor={numeroFor} />
+        </div>
+      </div>
     </div>
   );
 };
