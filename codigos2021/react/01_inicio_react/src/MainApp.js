@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ComponenteEventos from "./components/ComponenteEventos";
 import ComponenteFor from "./components/ComponenteFor";
 import ComponenteIf from "./components/ComponenteIf";
@@ -31,14 +32,7 @@ const MainApp = () => {
       </div>
       <div className="row">
         <div className="col">
-          <button
-            onClick={() => {
-              mostarUno = !mostarUno;
-              console.log(mostarUno);
-            }}
-          >
-            C1
-          </button>
+          <button>C1</button>
         </div>
         <div className="col">
           <button>C2</button>
@@ -47,11 +41,7 @@ const MainApp = () => {
           <button>C3</button>
         </div>
 
-        <ComponenteEventos
-          mostrarUno={mostarUno}
-          mostrarDos={mostarDos}
-          mostarTres={mostarTres}
-        />
+        <ComponenteEventos />
       </div>
     </div>
   );
