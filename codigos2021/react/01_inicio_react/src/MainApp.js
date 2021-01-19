@@ -8,11 +8,13 @@ import ComponenteSwitch from "./components/ComponenteSwitch";
 const MainApp = () => {
   let nombre = "Borja";
   let numeroIf = 9;
-  let numeroSwitch;
+  let numeroSwitch = 312;
   let numeroFor = 12;
   let mostarUno = false;
   let mostarDos = false;
   let mostarTres = false;
+  console.log("Componente mostado PAdre");
+  console.log(mostarUno);
 
   return (
     <div className="container mt-4">
@@ -32,7 +34,14 @@ const MainApp = () => {
       </div>
       <div className="row">
         <div className="col">
-          <button>C1</button>
+          <button
+            onClick={() => {
+              mostarUno = !mostarUno;
+              console.log(mostarUno);
+            }}
+          >
+            C1
+          </button>
         </div>
         <div className="col">
           <button>C2</button>
@@ -41,7 +50,11 @@ const MainApp = () => {
           <button>C3</button>
         </div>
 
-        <ComponenteEventos />
+        <ComponenteEventos
+          mostradoUno={mostarUno}
+          mostradoDos={false}
+          mostradoTres={true}
+        />
       </div>
     </div>
   );
