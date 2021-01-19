@@ -34,9 +34,9 @@ const ComponenteFor = (props) => {
             <li key={index}>{data}</li>
           ))*/
 
-          equiposLigas.map(({ nombre, liga }) => {
+          equiposLigas.map(({ nombre, liga }, index) => {
             return (
-              <div className="card" style={estiloCard}>
+              <div key={index} className="card" style={estiloCard}>
                 <div className="card-body">
                   <h5 className="card-title">{nombre}</h5>
                   <p className="card-text">{liga}</p>

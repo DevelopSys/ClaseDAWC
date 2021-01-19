@@ -1,3 +1,4 @@
+import ComponenteEventos from "./components/ComponenteEventos";
 import ComponenteFor from "./components/ComponenteFor";
 import ComponenteIf from "./components/ComponenteIf";
 import ComponenteSwitch from "./components/ComponenteSwitch";
@@ -8,6 +9,9 @@ const MainApp = () => {
   let numeroIf = 9;
   let numeroSwitch;
   let numeroFor = 12;
+  let mostarUno = false;
+  let mostarDos = false;
+  let mostarTres = false;
 
   return (
     <div className="container mt-4">
@@ -24,6 +28,30 @@ const MainApp = () => {
         <div className="col">
           <ComponenteFor titulo="Componente For" numeroFor={numeroFor} />
         </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <button
+            onClick={() => {
+              mostarUno = !mostarUno;
+              console.log(mostarUno);
+            }}
+          >
+            C1
+          </button>
+        </div>
+        <div className="col">
+          <button>C2</button>
+        </div>
+        <div className="col">
+          <button>C3</button>
+        </div>
+
+        <ComponenteEventos
+          mostrarUno={mostarUno}
+          mostrarDos={mostarDos}
+          mostarTres={mostarTres}
+        />
       </div>
     </div>
   );
