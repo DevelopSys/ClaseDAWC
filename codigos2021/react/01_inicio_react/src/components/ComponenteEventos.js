@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ComponenteEventos = ({ mostradoUno, mostradoDos, mostradoTres }) => {
+const ComponenteEventos = ({ visibilidad }) => {
   //console.log(props);
   //console.log("Lo pasado es " + mostradoUno);
   //console.log("Lo pasado es " + mostradoDos);
   //console.log("Lo pasado es " + mostradoTres);
   console.log("Montado componente");
+  console.log(visibilidad);
   let valorInput = "";
   //console.log("Ejecutado");
   const handlerClick = (id) => {
@@ -39,21 +40,21 @@ const ComponenteEventos = ({ mostradoUno, mostradoDos, mostradoTres }) => {
           {
             // condicion ? cuando es true : cuando es false
             // condicion && cuando es true
-            mostradoUno && <h3>Mostrar elemento uno</h3>
+            visibilidad.visibleCompoUno && <h3>Mostrar elemento uno</h3>
           }
         </div>
         <div className="col">
           {
             // condicion ? cuando es true : cuando es false
             // condicion && cuando es true
-            mostradoDos && <h3>Mostrar elemento dos</h3>
+            visibilidad.visibleCompoDos && <h3>Mostrar elemento dos</h3>
           }
         </div>
         <div className="col">
           {
             // condicion ? cuando es true : cuando es false
             // condicion && cuando es true
-            mostradoTres && <h3>Mostrar elemento tres</h3>
+            visibilidad.visibleCompoTres && <h3>Mostrar elemento tres</h3>
           }
         </div>
       </div>

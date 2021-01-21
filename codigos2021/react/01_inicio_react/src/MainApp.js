@@ -10,11 +10,22 @@ const MainApp = () => {
   let numeroIf = 9;
   let numeroSwitch = 312;
   let numeroFor = 12;
-  let mostarUno = false;
-  let mostarDos = false;
-  let mostarTres = false;
+  //let mostarUno = true;
+  //let mostarDos = false;
+  //let mostarTres = false;
+
+  /*const [mostarUno, setMostrarUno] = useState(false);
+  const [mostarDos, setMostrarDos] = useState(false);
+  const [mostarTres, setMostarTres] = useState(false);*/
+
+  const [visibilidad, setVisibilidad] = useState({
+    visibleCompoUno: false,
+    visibleCompoDos: false,
+    visibleCompoTres: false,
+  });
+
   console.log("Componente mostado PAdre");
-  console.log(mostarUno);
+  //console.log(mostarUno);
 
   return (
     <div className="container mt-4">
@@ -36,24 +47,50 @@ const MainApp = () => {
         <div className="col">
           <button
             onClick={() => {
-              mostarUno = !mostarUno;
-              console.log(mostarUno);
+              //mostarUno = !mostarUno;
+              //console.log(mostarUno);
+              //setMostrarUno(!mostarUno);
+              setVisibilidad({
+                ...visibilidad,
+                visibleCompoUno: !visibilidad.visibleCompoUno,
+              });
             }}
           >
             C1
           </button>
         </div>
         <div className="col">
-          <button>C2</button>
+          <button
+            onClick={() => {
+              //setMostrarDos(!mostarDos);
+              setVisibilidad({
+                ...visibilidad,
+                visibleCompoDos: !visibilidad.visibleCompoDos,
+              });
+            }}
+          >
+            C2
+          </button>
         </div>
         <div className="col">
-          <button>C3</button>
+          <button
+            onClick={() => {
+              //setMostarTres(!mostarTres);
+              setVisibilidad({
+                ...visibilidad,
+                visibleCompoTres: !visibilidad.visibleCompoTres,
+              });
+            }}
+          >
+            C3
+          </button>
         </div>
 
         <ComponenteEventos
-          mostradoUno={mostarUno}
-          mostradoDos={false}
-          mostradoTres={true}
+          /*mostradoUno={mostarUno}
+          mostradoDos={mostarDos}
+          mostradoTres={mostarTres}*/
+          visibilidad={visibilidad}
         />
       </div>
     </div>

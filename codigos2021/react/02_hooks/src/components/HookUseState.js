@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-const HookUseState = (props) => {
-  const [counter, setCounter] = useState(props.numero);
+const HookUseState = ({ numero }) => {
+  const [counter, setCounter] = useState(numero);
 
   // const state
   // const setState
+
+  console.log("Componente hijo actualizado " + counter);
 
   let operacion;
 
@@ -12,13 +14,13 @@ const HookUseState = (props) => {
     //console.log(e);
     switch (target.name) {
       case "incremento":
-        setCounter(counter + 1);
+        setCounter(numero + 1);
         break;
       case "decremento":
-        setCounter(counter - 1);
+        setCounter(numero - 1);
         break;
       case "reset":
-        setCounter(0);
+        setCounter(numero);
         break;
     }
     //setCounter(counter + 1);
