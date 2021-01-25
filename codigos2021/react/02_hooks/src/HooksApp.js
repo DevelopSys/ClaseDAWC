@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import HookFormState from "./components/HookFormState";
 import HookUseState from "./components/HookUseState";
 
 const HooksApp = () => {
@@ -25,6 +26,9 @@ const HooksApp = () => {
       <div className="row">
         <div className="col">
           <HookUseState numero={contador} />
+        </div>
+        <div className="col">
+          <HookFormState />
         </div>
       </div>
     </>
