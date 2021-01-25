@@ -21,7 +21,12 @@ const HooksApp = () => {
       <button className="btn btn-primary" onClick={() => {}}>
         Pasar valor
       </button>
-      <HookUseState numero={contador} />
+
+      <div className="row">
+        <div className="col">
+          <HookUseState numero={contador} />
+        </div>
+      </div>
     </>
   );
 };
