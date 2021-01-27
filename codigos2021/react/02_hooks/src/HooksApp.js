@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HookFormState from "./components/HookFormState";
+import HookJuegoState from "./components/HookJuegoState";
 import HookUseState from "./components/HookUseState";
 
 const HooksApp = () => {
@@ -29,6 +30,9 @@ const HooksApp = () => {
         </div>
         <div className="col">
           <HookFormState />
+        </div>
+        <div className="col">
+          <HookJuegoState />
         </div>
       </div>
     </>
