@@ -92,10 +92,6 @@ const HookJuegoState = () => {
       ) : (
         <p>No se ha empezado</p>
       )}
-
-      {/* <div class="alert alert-success" role="alert">
-        El jugador XXX ha ganado
-      </div> */}
     </>
   );
 };
