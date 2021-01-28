@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
 const HookJuegoState = () => {
+  // state --> modificar el estado
   const [jugadores, setJugadores] = useState({});
+  // acceso directo a un elemento
+  const { jugador1, jugador2 } = jugadores;
+  const [ganador, setGanador] = useState("");
+  const [estadoBoton, setEstadoBoton] = useState(false);
 
   /*
   jugadores = {jugadorUno:{nombre:"asd", puntuacion:123123123}}
@@ -54,6 +59,7 @@ const HookJuegoState = () => {
           <button className="btn btn-success">Empezar</button>
           <button
             className="btn btn-success"
+            disabled={estadoBoton}
             onClick={() => {
               let aleatorioUno = Math.random() * 20;
               let aleatorioDos = Math.random() * 20;
@@ -61,18 +67,22 @@ const HookJuegoState = () => {
                 setJugadores({
                   ...jugadores,
                   jugador1: {
-                    nombre: jugadores.jugador1.nombre,
-                    puntuacion: jugadores.jugador1.puntuacion + 1,
+                    nombre: jugador1.nombre,
+                    puntuacion: jugador1.puntuacion + 1,
                   },
                 });
               } else if (aleatorioDos > aleatorioUno) {
                 setJugadores({
                   ...jugadores,
                   jugador2: {
-                    nombre: jugadores.jugador2.nombre,
-                    puntuacion: jugadores.jugador2.puntuacion + 1,
+                    nombre: jugador2.nombre,
+                    puntuacion: jugador2.puntuacion + 1,
                   },
                 });
+              }
+
+              if (jugador2.puntuacion > 6) {
+                setEstadoBoton(true);
               }
             }}
           >
@@ -86,12 +96,20 @@ const HookJuegoState = () => {
 
       {jugadores.jugador1 && jugadores.jugador2 ? (
         <p>
-          {jugadores.jugador1.nombre} : {jugadores.jugador1.puntuacion} <br />
-          {jugadores.jugador2.nombre} : {jugadores.jugador2.puntuacion} <br />
+          {jugador1.nombre} : {jugador1.puntuacion} <br />
+          {jugador2.nombre} : {jugador2.puntuacion} <br />
         </p>
       ) : (
         <p>No se ha empezado</p>
       )}
+
+      {jugador1 &&
+        jugador2 &&
+        (jugador1.puntuacion > 9 || jugador2.puntuacion > 9) && (
+          <div class="alert alert-success" role="alert">
+            El ganador es: {ganador}
+          </div>
+        )}
     </>
   );
 };

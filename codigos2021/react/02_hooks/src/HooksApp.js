@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HookFormState from "./components/HookFormState";
 import HookJuegoState from "./components/HookJuegoState";
+import HookTraductorState from "./components/HookTraductorState";
 import HookUseState from "./components/HookUseState";
 
 const HooksApp = () => {
@@ -24,7 +25,7 @@ const HooksApp = () => {
         Pasar valor
       </button>
 
-      <div className="row">
+      <div className="row mt-4">
         <div className="col">
           <HookUseState numero={contador} />
         </div>
@@ -34,6 +35,9 @@ const HooksApp = () => {
         <div className="col">
           <HookJuegoState />
         </div>
+      </div>
+      <div className="row mt-4">
+        <HookTraductorState />
       </div>
     </>
   );
