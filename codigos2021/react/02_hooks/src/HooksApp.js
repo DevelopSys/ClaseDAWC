@@ -11,7 +11,7 @@ const HooksApp = () => {
 
   return (
     <>
-      <h1>Aplicación para explicar funcionamiento hooks</h1>
+      {/*  <h1>Aplicación para explicar funcionamiento hooks</h1>
       <input
         className="form-control"
         placeholder="Introduce valor inicial"
@@ -35,7 +35,7 @@ const HooksApp = () => {
         <div className="col">
           <HookJuegoState />
         </div>
-      </div>
+      </div> */}
       <div className="row mt-4">
         <HookTraductorState />
       </div>
