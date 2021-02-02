@@ -23,9 +23,15 @@ const HookTraductorState = () => {
     frances: "",
   });
 
+  const [palabraBuscar, setPalabraBuscar] = useState("");
+
+  const [palabrasCoincidentes, setPalabrasCoincidentes] = useState([]);
+
   const handleInputs = (event) => {
     setPalabra({ ...palabra, [event.target.name]: event.target.value });
   };
+
+  //return console.log();
 
   const hayTraducciones = () => {
     return (
@@ -108,12 +114,20 @@ const HookTraductorState = () => {
                 </tr>
               </thead>
               <tbody>
-                {diccionario.map((trad, index) => (
+                {/* {diccionario.map((trad, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
                     <td>{trad.traducciones.espaniol}</td>
                     <td>{trad.traducciones.ingles}</td>
                     <td>{trad.traducciones.frances}</td>
+                  </tr>
+                ))} */}
+                {diccionario.map(({ traducciones }, index) => (
+                  <tr key={index}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{traducciones.espaniol}</td>
+                    <td>{traducciones.ingles}</td>
+                    <td>{traducciones.frances}</td>
                   </tr>
                 ))}
               </tbody>
@@ -126,8 +140,35 @@ const HookTraductorState = () => {
         </div>
         <div className="col-4">
           <h3>Buscar de palabras</h3>
-          <input placeholder="buscar" className="form-control"></input>
-          <button className="btn btn-primary mt-4">Buscar</button>
+          <input
+            placeholder="buscar"
+            className="form-control"
+            id="inputBuscar"
+            value={palabraBuscar}
+            onChange={(e) => {
+              setPalabraBuscar(e.target.value);
+            }}
+          ></input>
+          <button
+            className="btn btn-primary mt-4"
+            onClick={() => {
+              console.log(palabraBuscar);
+              palabraBuscar.includes();
+              let coincidencias = diccionario.filter((traduccion) =>
+                traduccion.original
+                  .toLowerCase()
+                  .includes(palabraBuscar.toLowerCase())
+              );
+
+              setPalabrasCoincidentes(coincidencias);
+
+              //console.log(coincidencias);
+              // array de palabras coincidentes
+              //document.querySelector("#inputBuscar").value;
+            }}
+          >
+            Buscar
+          </button>
 
           <table class="table">
             <thead>
@@ -139,23 +180,23 @@ const HookTraductorState = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              {palabrasCoincidentes.length > 0 ? (
+                // array de palabras coincidentes
+                palabrasCoincidentes.map((trad, index) => {
+                  return (
+                    <tr key={index}>
+                      <th scope="row">{index + 1}</th>
+                      <td>{trad.traducciones.espaniol}</td>
+                      <td>{trad.traducciones.ingles}</td>
+                      <td>{trad.traducciones.frances}</td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <div class="alert alert-warning" role="alert">
+                  o no has buscado cosas o no hay coincidencia{" "}
+                </div>
+              )}
             </tbody>
           </table>
         </div>
