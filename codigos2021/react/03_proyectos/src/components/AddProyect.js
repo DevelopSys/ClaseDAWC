@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-const AddProyect = () => {
+const AddProyect = (props) => {
+  const [tecnologias, setTecnologias] = useState([
+    "React",
+    "Angular",
+    "Vue",
+    "JS",
+    "PHP",
+    "HTML",
+    "Java",
+    "Python",
+    "C#",
+    ".NET",
+  ]);
+
   return (
     <>
       <h2>Agregar proyecto</h2>
@@ -26,9 +39,9 @@ const AddProyect = () => {
         <div className="mb-3">
           <label className="form-label">Tecnologíaa</label>
           <select className="form-control">
-            <option>React</option>
-            <option>JS</option>
-            <option>Angular</option>
+            {tecnologias.map((tecnologia, index) => (
+              <option key={index}>{tecnologia}</option>
+            ))}
           </select>
         </div>
 
@@ -46,7 +59,22 @@ const AddProyect = () => {
           <input type="checkbox" className="form-check-input"></input>
           <label className="form-check-label">Proyecto core</label>
         </div>
-        <button className="btn btn-primary">Agregar proyecto</button>
+        <button
+          className="btn btn-primary"
+          onClick={(e) => {
+            e.preventDefault();
+            //console.log("pulsado");
+            // quiero modificar la lista de proyectos agregarle uno nuevo
+            // necesito ?? nombre:"EJEMPLO"
+            // necesito ??  no puedo -->(necesito el sitio donde agregarlo) o la forma de agregarlo
+            // valor_nuevo = valor_anterior + nuevo [...valor_anterior, nuevo_elemento]
+            props.setProyect((valor_anterior) => {
+              return [...valor_anterior, { nombre: "Proyecto añadido" }];
+            });
+          }}
+        >
+          Agregar proyecto
+        </button>
       </form>
     </>
   );
