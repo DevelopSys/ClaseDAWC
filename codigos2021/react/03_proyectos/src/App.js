@@ -4,44 +4,7 @@ import AddProyect from "./components/AddProyect";
 import ListProyects from "./components/ListProyects";
 
 function App() {
-  const [proyectos, setProyectos] = useState([
-    {
-      nombre: "React Telefonica",
-      responsable: "asd",
-      correo: "asd",
-      presupuesto: 123,
-      tecnologia: "",
-      equipo: "asd",
-      core: false,
-    },
-    {
-      nombre: "Angular Vodafone",
-      responsable: "asd",
-      correo: "asd",
-      presupuesto: 123,
-      tecnologia: "",
-      equipo: "asd",
-      core: false,
-    },
-    {
-      nombre: "JS Europa",
-      responsable: "asd",
-      correo: "asd",
-      presupuesto: 123,
-      tecnologia: "",
-      equipo: "asd",
-      core: false,
-    },
-    {
-      nombre: "HTML Everis",
-      responsable: "asd",
-      correo: "asd",
-      presupuesto: 123,
-      tecnologia: "",
-      equipo: "asd",
-      core: false,
-    },
-  ]);
+  const [proyectos, setProyectos] = useState([]);
 
   //setProyectos([...proyectos,{nombre:"asdasd",responsable:"asd",presupuesto:123123}])
 
