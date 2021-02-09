@@ -20,9 +20,19 @@ const AddProyect = (props) => {
     correo: "",
     presupuesto: 0,
     tecnologia: "",
-    equipo: "",
+    equipo: [],
     core: false,
   });
+
+  const [integrante, setIntegrante] = useState("");
+
+  const [equipo, setEquipo] = useState([]);
+
+  const handleIntegrante = () => {
+    //setEquipo([...equipo, integrante]);
+    setProyecto({ ...proyecto, equipo: [...proyecto.equipo, integrante] });
+    setIntegrante("");
+  };
 
   const handleInputs = ({ target }) => {
     if (target.name === "core") {
@@ -32,7 +42,7 @@ const AddProyect = (props) => {
     }
   };
 
-  // {nombre: "",responsable:"",correo:"",presupuesto:123,tecnologia:"",equipo="",core:true}
+  // {nombre: "",responsable:"",correo:"",presupuesto:123,tecnologia:"",equipo=["Borja","Luis","Pedro","Juan"],core:true}
 
   return (
     <>
@@ -99,28 +109,50 @@ const AddProyect = (props) => {
           <input
             type="text"
             className="form-control"
-            onChange={handleInputs}
+            onChange={(e) => {
+              setIntegrante(e.target.value);
+            }}
             name="equipo"
-            value={proyecto.equipo}
+            value={integrante}
           ></input>
           <button
             onClick={(e) => {
               e.preventDefault();
+              integrante.length > 0
+                ? handleIntegrante()
+                : alert("Por favor mete algo en el integrante");
             }}
           >
-            Agregar componente{" "}
+            Agregar componente
           </button>
           <button
             onClick={(e) => {
               e.preventDefault();
+              setProyecto({ ...proyecto, equipo: equipo });
             }}
           >
             Validar equipo
           </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+
+              setProyecto({
+                ...proyecto,
+                equipo: proyecto.equipo.filter((data) => {
+                  return data === "Borja";
+                }),
+              });
+            }}
+          >
+            Quitar componentes
+          </button>
         </div>
 
         <ul>
-          <li>asdasdasd</li>
+          {proyecto.equipo.map((data) => (
+            <li>{data}</li>
+          ))}
         </ul>
         <div className="mb-3 form-check">
           <input
@@ -151,7 +183,7 @@ const AddProyect = (props) => {
               correo: "",
               presupuesto: 0,
               tecnologia: "",
-              equipo: "",
+              equipo: [],
               core: false,
             });
           }}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import AddProyect from "./components/AddProyect";
+import Listado from "./components/Listado";
 import ListProyects from "./components/ListProyects";
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
         <div className="col-4">
           <ListProyects proyects={proyectos} />
         </div>
+      </div>
+      <div className="row">
+        <Listado proyects={proyectos} />
       </div>
     </div>
   );
