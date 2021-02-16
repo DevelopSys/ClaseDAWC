@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const HookFormulario = (valorFormulario) => {
+const HookFormulario = (valorFormulario = {}) => {
   const [formulario, setFormulario] = useState(valorFormulario);
 
   const handleInputs = (e) => {

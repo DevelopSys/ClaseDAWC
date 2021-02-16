@@ -1,5 +1,6 @@
-import React from "react";
-import hookFormulario from "../hooks/hookFormulario";
+import React, { useEffect } from "react";
+//import hookFormulario from "../hooks/hookFormulario";
+import hookPerso from "../hooks/hookPerso";
 
 const FormularioComponente = () => {
   //const [formulario, setFormulario] = useState({ nombre: "", correo: "" });
@@ -10,7 +11,19 @@ const FormularioComponente = () => {
     setFormulario({ ...formulario, [e.target.name]: e.target.value });
   };*/
 
-  const [formulario, handleInputs] = hookFormulario({});
+  //const [formulario, handleInputs] = hookFormulario({ nombre: "borja" });
+  const [formulario, handler] = hookPerso({});
+
+  useEffect(() => {
+    console.log("carga inicial");
+    return () => {
+      // ejecutado cuando el componente se desmonta
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("formulario cambiado");
+  }, [formulario]);
 
   return (
     <>
@@ -24,7 +37,7 @@ const FormularioComponente = () => {
             class="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
-            onChange={handleInputs}
+            onChange={handler}
             name="correo"
           ></input>
           <div id="emailHelp" class="form-text">
@@ -39,7 +52,7 @@ const FormularioComponente = () => {
             type="text"
             class="form-control"
             id="exampleInputPassword1"
-            onChange={handleInputs}
+            onChange={handler}
             name="nombre"
           ></input>
         </div>
