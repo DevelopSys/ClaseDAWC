@@ -12,7 +12,12 @@ export const Personajes = () => {
   const consumoAPI = async () => {
     let datos = await fetch(url);
     let datosJSON = await datos.json();
-    console.log(datosJSON);
+    /*let datosJSON;
+    fetch(url)
+      .then((data) => data.json())
+      .then((data) => (datosJSON = data));*/
+
+    //console.log(datosJSON);
     setPersonajes(datosJSON);
   };
 
@@ -29,9 +34,7 @@ export const Personajes = () => {
 
   useEffect(() => {
     console.log("Ejecución lanzada desde otro");
-    setTimeout(() => {
-      consumoAPI();
-    }, 3000);
+    consumoAPI();
   }, [otro]);
 
   return (
