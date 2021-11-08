@@ -1,3 +1,5 @@
+
+
 let palos = ["C", "D", "P", "T"];
 let baraja = [];
 
@@ -5,6 +7,9 @@ let botonIniciar = document.querySelector("#boton-iniciar");
 let botonVer = document.querySelector("#boton-ver");
 let botonSacar = document.querySelector("#boton-aleatorio");
 let cartasJugador = document.querySelector("#cartas-jugador");
+
+let cartaEjemplo = new carta("1C",1,"ruta");
+console.log(cartaEjemplo.getTexto,);
 
 botonSacar.addEventListener("click", () => {
   // el string con el nombre de la carta 8C
@@ -55,6 +60,9 @@ function iniciarBaraja() {
       } else if (index == 12) {
         baraja.push(`Q${palos[index2]}`);
       } else if (index == 13) {
+
+
+        new carta(`Q${palos[index2]}`)
         baraja.push(`K${palos[index2]}`);
       }
     }
