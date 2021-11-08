@@ -1,38 +1,46 @@
-class carta{
+class carta {
+  texto = "";
+  valor = 0;
+  imagen = "";
 
-    texto = "";
-    valor = 0;
-    imagen = "";    
-    
-    constructor(texto, valor, imagen){
-        this.texto = texto;
-        this.valor = valor;
-        this.imagen = imagen;
+  constructor(texto) {
+    this.texto = texto;
+    this.setValor();
+    this.setImagen();
+  }
+
+  setValor() {
+    let valorNumero = this.getTexto.substring(0, this.getTexto.length - 1);
+    if (isNaN(valorNumero)) {
+      if (valorNumero == "J") {
+        this.valor = 11;
+      } else if (valorNumero == "Q") {
+        this.valor = 12;
+      } else if (valorNumero == "K") {
+        this.valor = 13;
+      }
+    } else {
+      this.valor = parseInt(valorNumero);
     }
+  }
 
-    set setTexto(texto){
-        this.texto = texto;
-    }
+  setImagen() {
+    this.imagen = `utils/images/${this.texto}.png`;
+  }
 
-    get getTexto(){
-        return this.texto;
-    }
+  set setTexto(texto) {
+    this.texto = texto;
+  }
 
-    set setValor(texto){
+  get getTexto() {
+    return this.texto;
+  }
 
-        let valor = this.getTexto.toString().substring(0, this.getTexto.length-1);
-        if (isNaN(valor)) {
-          if (valor == "J") {
-            valor = 11;
-          } else if (valor == "Q") {
-            valor = 12;
-          } else if (valor == "K") {
-            valor = 13;
-          }
-        }
-        console.log(valor);
+  get getValor(){
+    return this.valor
+  }
 
-    }
-
+  get getImagen(){
+    return this.imagen
+  }
 }
-
