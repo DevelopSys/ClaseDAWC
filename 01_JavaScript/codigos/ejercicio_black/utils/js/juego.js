@@ -26,6 +26,12 @@ botonSacar.addEventListener("click", () => {
   }
 });
 
+
+setInterval(() => {
+  iniciarBaraja();
+  baraja = _.shuffle(baraja);
+}, 5000);
+
 botonIniciar.addEventListener("click", () => {
   botonIniciar.disabled = true;
   iniciarBaraja();
@@ -39,12 +45,17 @@ botonVer.addEventListener("click", () => {
 botonPlantarse.addEventListener("click", () => {
   botonSacar.disabled = true;
   botonPlantarse.disabled = true;
-  turno = true;
+  turno = true; 
   // la maquina empieza a jugar
-  setInterval(() => {
-    // saca una carta la maquina y la pone en su sitio
+  let intervaloCarta = setInterval(() => {
+    // saca una carta la maquina y la pone en su siti o
     // la carta que acaba de sacar la maquina
     ponerCarta(sacarCarta());
+    if (jugadores[1].getPuntuacion >= 15){
+        clearInterval(intervaloCarta)
+        
+    }
+
   }, 2000);
 });
 
