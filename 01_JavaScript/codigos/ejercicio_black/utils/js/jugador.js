@@ -15,6 +15,10 @@ class jugador {
        this.puntuacion += puntosAdd 
     }
 
+    set resetearPuntuacion(){
+        this.puntuacion=0;
+    }
+
     get getPuntuacion(){
         return this.puntuacion
     }
