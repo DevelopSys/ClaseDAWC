@@ -39,14 +39,29 @@ window.addEventListener("load", (e) => {
     console.log(localStorage.getItem("fecha"));
     console.log(localStorage.getItem("telefono"));
     console.log(localStorage.getItem("apellido"));
-    console.log(localStorage.getItem("objeto"));
+    console.log(JSON.parse(localStorage.getItem("objeto")));
   });
 
   botonIndex.addEventListener("click", (e) => {
 
-    localStorage.key(0);
+
+    for (let index = 0; index < localStorage.length; index++) {
+
+        if (localStorage.key(index) == "objeto"){
+            console.log(JSON.parse(localStorage.getItem(localStorage.key(index))));
+        } else {
+            console.log(localStorage.getItem(localStorage.key(index)));
+        }
+        
+    }
+    
+    // [nombre1=valor//nombre2=valor//nombre3=valor//nombre45=valor//
+    // nombre5=
+    // valor
+    
+    /*localStorage.key(0);
     localStorage.length;
-    localStorage.getItem()
+    loxcalStorage.getItem()*/
 
   });
 
