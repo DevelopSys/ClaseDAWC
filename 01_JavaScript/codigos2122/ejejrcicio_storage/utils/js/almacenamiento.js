@@ -5,6 +5,10 @@ let botonAgregar;
 let botonRecuperar;
 let botonBorrar;
 let botonIndex;
+let botonCrearCookie;
+let botonRecurperarCookie;
+let botonBorrarCookie;
+let botonModificarCookie;
 
 window.addEventListener("load", (e) => {
   instancias();
@@ -43,27 +47,48 @@ window.addEventListener("load", (e) => {
   });
 
   botonIndex.addEventListener("click", (e) => {
-
-
     for (let index = 0; index < localStorage.length; index++) {
-
-        if (localStorage.key(index) == "objeto"){
-            console.log(JSON.parse(localStorage.getItem(localStorage.key(index))));
-        } else {
-            console.log(localStorage.getItem(localStorage.key(index)));
-        }
-        
+      if (localStorage.key(index) == "objeto") {
+        console.log(JSON.parse(localStorage.getItem(localStorage.key(index))));
+      } else {
+        console.log(localStorage.getItem(localStorage.key(index)));
+      }
     }
-    
+
     // [nombre1=valor//nombre2=valor//nombre3=valor//nombre45=valor//
     // nombre5=
     // valor
-    
+
     /*localStorage.key(0);
     localStorage.length;
     loxcalStorage.getItem()*/
+  });
+
+  botonCrearCookie.addEventListener("click", (e) => {
+    document.cookie = "nombre=Borja Maria; secure";
+    document.cookie = "apellido=Martin; secure";
+  });
+
+  botonRecurperarCookie.addEventListener("click", (e) => {
+    let cookieCompleta = document.cookie;
+    let cookiesPartidas = cookieCompleta.split(";");
+
+    cookiesPartidas.forEach((element) => {
+      let cookieIndividial = element.split("=");
+      console.log(cookieIndividial);
+      console.log(
+        `El valor de la cookie ${cookieIndividial[0].trim()} es ${cookieIndividial[1].trim()}`
+      );
+    });
+  });
+
+  botonBorrarCookie.addEventListener("click", (e) => {
+
+    document.cookie = "experiencia=; expires=Thu, 01 Jan 2020 00:00:00 UTC"
 
   });
+
+  botonModificarCookie.addEventListener('click',(e)=>{document.cookie = "telefono=1234567"})
 
   //alert('Bienvenido a la web sobre almacenamiento')
   /*document.querySelector("#contenido").textContent = "Contenido de la página para explicar los diferentes tipos de almaceniento web"
@@ -73,11 +98,34 @@ window.addEventListener("load", (e) => {
     console.log(localStorage.getItem("apellido"));*/
 });
 
+function partirCookie(cookie) {
+  let cookiePartida = cookie.split("; ");
+
+  return cookiePartida;
+}
+
+function setearCookie(nombre, valor, expiracion) {
+  
+document.cookie = `${nombre}=${valor}; expires=${expiracion}`
+}
+
+function deleteCookie(nombre, expiracion) {
+  document.cookie = `${nombre}=; expires=${expiracion}`
+}
+
+function recuperarCookieConcreta(nombre){
+  document.cookie.substring(document.cookie.indexOf(nombre),)
+}
+
 function instancias() {
   botonAgregar = document.querySelector("#boton-agregar");
   botonRecuperar = document.querySelector("#boton-consultar");
   botonBorrar = document.querySelector("#boton-borrar");
   botonIndex = document.querySelector("#boton-index");
+  botonCrearCookie = document.querySelector("#boton-cookie-crear");
+  botonRecurperarCookie = document.querySelector("#boton-cookie-mostrar");
+  botonBorrarCookie = document.querySelector("#boton-cookie-borrar");
+  botonModificarCookie = document.querySelector("#boton-cookie-modificar");
 }
 
 // CREAR UN FORMULARIO PARA GUARDAR EN LOCALSTORAGE NOMBRE, APELLIDO, TELEFONO Y FECHA DE NACIMIENTO
