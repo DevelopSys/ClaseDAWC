@@ -105,6 +105,9 @@ function partirCookie(cookie) {
 }
 
 function setearCookie(nombre, valor, expiracion) {
+
+  let fecha = new Date('2021-2-11')
+  fecha.toUTCString()
   
 document.cookie = `${nombre}=${valor}; expires=${expiracion}`
 }
