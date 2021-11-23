@@ -31,7 +31,9 @@
 let url = "https://jsonplaceholder.typicode.com/posts";
 let contenedor = document.querySelector("#contenedor-cartas");
 
-fetch(url)
+
+
+await fetch(url)
   .then(
     (res) => {
       json = res.json();
@@ -62,3 +64,10 @@ fetch(url)
     },
     (rej) => {}
   );
+
+async function name(params) {
+  
+  new Promise();
+
+}
+
