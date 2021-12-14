@@ -13,14 +13,14 @@ $(document).ready(() => {
     //e.preventDefault();
   });
 
-
   $.ajax({
-      type: "method",
-      url: "url",
-      data: "data",
-      dataType: "dataType",
-      success: function (response) {
-          
-      }
+    type: "GET",
+    url: "https://randomuser.me/api/?results=50&gender=female",
+    dataType: "json",
+    success: function (response) {
+      console.log(response.results);
+    }
   });
+
 });
+
