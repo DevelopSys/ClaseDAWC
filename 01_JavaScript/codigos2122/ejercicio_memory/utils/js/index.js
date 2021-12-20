@@ -1,4 +1,6 @@
-let cartas = [];
+let cartasIzquierda = [];
+let cartasDerecha = [];
+let cartaLectura;
 
 $(document).ready(function () {
   $("#boton_aparecer").click(function (e) {
@@ -18,11 +20,36 @@ $(document).ready(function () {
   });
 
   cargarCargas();
-  pintarCartas('izquierda');
-  setTimeout(() => {
-    pintarCartas('derecha');
-  }, 5000);
+  pintarCartas("izquierda");
+  pintarCartas("derecha");
 
+  $("#cartas_izquierda img").click(function (e) {
+    $(e.currentTarget).fadeOut();
+    $(e.currentTarget).attr(
+      "src",
+      cartasIzquierda[e.currentTarget.alt].imagenUp
+    );
+    $(e.currentTarget).fadeIn();
+    /*setTimeout(() => {
+      $(e.currentTarget).fadeOut();
+      $(e.currentTarget).attr("src", "./utils/images/reverso.png");
+      $(e.currentTarget).fadeIn();
+    }, 2000);*/
+  });
+
+  $("#cartas_derecha img").click(function (e) {
+    console.log(e.currentTarget.alt);
+    
+
+    $(e.currentTarget).fadeOut();
+    $(e.currentTarget).attr("src", cartasDerecha[e.currentTarget.alt].imagenUp);
+    $(e.currentTarget).fadeIn();
+    /*setTimeout(() => {
+      $(e.currentTarget).fadeOut();
+      $(e.currentTarget).attr("src", "./utils/images/reverso.png");
+      $(e.currentTarget).fadeIn();
+    }, 2000);*/
+  });
 
   // muestra la imagen de la carta
   /* $("img").click(function (e) {
@@ -46,20 +73,37 @@ $(document).ready(function () {
     });*/
 });
 
-function cargarCargas() {
-  for (let index = 2; index < 10; index++) {
-    cartas.push(new carta(`utils/images/${index}.png`, index));
-  }
-  this.cartas = _.shuffle(cartas)
+function darVuelta(params) {
+  $(e.currentTarget).fadeOut();
+  $(e.currentTarget).attr("src", "./utils/images/reverso.png");
+  $(e.currentTarget).fadeIn();
+}
 
-  console.log(cartas);
+function cargarCargas() {
+  for (let index = 0; index < 10; index++) {
+    cartasDerecha.push(new carta(`utils/images/${index}.png`, index));
+    cartasIzquierda.push(new carta(`utils/images/${index}.png`, index));
+  }
+
+
+  this.cartasDerecha = _.shuffle(cartasDerecha);
+  this.cartasIzquierda = _.shuffle(cartasIzquierda);
+
+  console.log(cartasIzquierda);
+  console.log(cartasDerecha);
 }
 
 function pintarCartas(lado) {
-  $.each(cartas, function (index, element) { 
-    $(`#cartas_${lado}`).append(`<img src='${element.imagenUp}' style="width: 20%;">`)   
-  });
+  let array;
+  if (lado == "izquierda") {
+    array = cartasIzquierda;
+  } else {
+    array = cartasDerecha;
+  }
 
-  
-  
+  $.each(array, function (index, element) {
+    $(`#cartas_${lado}`).append(
+      `<img src='${element.imagenReverso}' style="width: 20%;" alt='${element.value}'">`
+    );
+  });
 }
