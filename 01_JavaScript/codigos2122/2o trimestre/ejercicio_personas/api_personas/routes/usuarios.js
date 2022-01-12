@@ -5630,4 +5630,16 @@ router.get("/female", (req, res, next) => {
   });
 });
 
+router.get("/age/:age", (req, res, next) => {
+    //let usuariosMasculinos = usuarios.filter(element=>{return element.gender == 'male'})
+    res.json({
+      results: usuarios.filter((element) => {
+        return element.gender == "female";
+      }), 
+      number: usuarios.filter((element) => {
+          return element.gender == "female";
+        }).length,
+    });
+  });
+
 module.exports = router;
