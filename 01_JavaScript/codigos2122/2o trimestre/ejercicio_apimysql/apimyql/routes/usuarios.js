@@ -99,6 +99,35 @@ router.get("/filter", (req, res, next) => {
   });
 });
 
+// ejecutar una query de INSERT Manuel, Masculino
+
+router.post("/insertar", (req, res, next) => {
+  let conexion = gestionConexion.conexion();
+  conexion.connect((err) => {
+    if (err) {
+      res
+        .status(500)
+        .send({ code: 1, message: "error en la conexion", data: err });
+    } else {
+      conexion.query(
+        "INSERT INTO usuarios (nombre,genero) VALUE (?,?)",
+        [req.query.nombre, req.query.genero],
+        (err, data) => {
+          if (err) {
+            res
+              .status(400)
+              .send({ code: 1, message: "query incorrecta", data: err });
+          } else {
+            res
+              .status(200)
+              .send({ code: 1, message: "query correcta", data: data });
+          }
+        }
+      );
+    }
+  });
+});
+
 /**
  * 
  * conexionActual.query(
