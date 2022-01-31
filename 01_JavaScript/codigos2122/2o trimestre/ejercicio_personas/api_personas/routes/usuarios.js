@@ -5600,25 +5600,49 @@ router.get("/all", (req, res, next) => {
   //console.log("ejemplo de peticion");
   res.json({
     results: usuarios,
-    number: usuarios.length
+    number: usuarios.length,
   });
 });
 
 // /usuarios/male
-router.get("/male", (req, res, next) => {
+router.get("/gender/:gender/:name?", (req, res, next) => {
   //let usuariosMasculinos = usuarios.filter(element=>{return element.gender == 'male'})
+  let parametros = req.params;
+  let genero = parametros.gender;
+  let nombre = parametros.name;
+  let resultado = [];
+  if (nombre != undefined) {
+    resultado = usuarios.filter((element) => {
+      return (
+        element.gender == parametros.gender && element.name.first === nombre
+      );
+    });
+  } else {
+    resultado = usuarios.filter((element) => {
+      return element.gender == parametros.gender;
+    });
+  }
+
+  console.log(parametros);
   res.json({
-    results: usuarios.filter((element) => {
-      return element.gender == "male";
-    }), 
-    number: usuarios.filter((element) => {
-        return element.gender == "male";
-      }).length,
+    results: resultado,
+    number: resultado.length,
   });
 });
 
+router.get("/filter", (req, res, next) => {
+  let parametros = req.query;
+  let country = parametros.country;
+  let genero = parametros.gender;
+  let resultado = usuarios.filter((element) => {
+    return element.gender === genero && element.location.country == country;
+  });
+  console.log(parametros);
+  res.json({ response: resultado });
+});
+
 // /usuarios/female
-router.get("/female", (req, res, next) => {
+/* router.get("/female", (req, res, next) => {
   //let usuariosMasculinos = usuarios.filter(element=>{return element.gender == 'male'})
   res.json({
     results: usuarios.filter((element) => {
@@ -5628,7 +5652,7 @@ router.get("/female", (req, res, next) => {
         return element.gender == "female";
       }).length,
   });
-});
+}); */
 
 router.get("/age/:age", (req, res, next) => {
     //let usuariosMasculinos = usuarios.filter(element=>{return element.gender == 'male'})
