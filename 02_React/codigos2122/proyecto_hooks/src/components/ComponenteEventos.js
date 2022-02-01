@@ -7,19 +7,19 @@ function ComponenteEventos() {
   } */
 
   //const [first, setfirst] = useState(9);
-  let objeto = {nombre: "Borja", edad : 20};
-  let array = [1,2,3,4,5,5,6,7,8,9];
-  let arrayNuevo = [{nomnbre:"asd",edad:2},...array]
+  let objeto = { nombre: "Borja", edad: 20 };
+  let array = [1, 2, 3, 4, 5, 5, 6, 7, 8, 9];
+  let arrayNuevo = [{ nomnbre: "asd", edad: 2 }, ...array];
 
-  let {edad, nombre} = objeto;
+  let { edad, nombre } = objeto;
 
   console.log(edad);
   console.log(nombre);
 
-  let contenido = "esto es el contenido"
+  let contenido = "esto es el contenido";
 
   let gestionBoton = () => {
-    alert(contenido)
+    alert(contenido);
     //console.log("boton pulsado desde funcion");
   };
 
@@ -27,6 +27,7 @@ function ComponenteEventos() {
     //console.log(event.target.value);
     contenido = event.target.value;
     console.log(contenido);
+    
   };
 
   return (
