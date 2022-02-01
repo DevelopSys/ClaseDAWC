@@ -2,11 +2,6 @@
   text-align: center;
 }
 
-.carta-personalizada{
-  width: 18rem;
-  background: gray;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -17,17 +12,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-.columna-uno{
-  background-color: antiquewhite;
-}
-
-.columna-dos{
-  background-color:cadetblue;
-  color: white;
-}
-
-
 
 .App-header {
   background-color: #282c34;
