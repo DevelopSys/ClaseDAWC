@@ -6,7 +6,8 @@ function ComponenteState() {
 
   const [elementos, setElementos] = useState([]);
   const [elementoInput, setElementoInput] = useState("");
-  let peticionesFiltradas = [];
+  const [peticionesFiltradas, setPeticionesFiltradas] = useState([])
+  //let peticionesFiltradas = [];
   /* const [elementoEmail, setElementoEmail] = useState("");
   const [elementoPass, setElementoPass] = useState("");
   const [elementoExperiencia, setElementoExperiencia] = useState(false); */
@@ -96,8 +97,9 @@ function ComponenteState() {
       <button
         onClick={(e) => {
           //console.log(filtro);
-          peticionesFiltradas = formularios.filter((e) => e.mail == filtro);
-          console.log(peticionesFiltradas);
+          setPeticionesFiltradas(formularios.filter((e) => e.mail == filtro));
+          //this.peticionesFiltradas = formularios.filter((e) => e.mail == filtro);
+          
         }}
       >
         Filtrar
