@@ -7,7 +7,6 @@ const Listado = (props) => {
       <div className="row">
         {props.proyects.map((data) => (
           <div class="card" style={{ width: "18rem;" }}>
-            <img src="..." class="card-img-top" alt="..."></img>
             <div class="card-body">
               <h5 class="card-title">{data.nombre}</h5>
               <p class="card-text">
@@ -18,9 +17,6 @@ const Listado = (props) => {
                   <li>{integrante}</li>
                 ))}
               </ul>
-              <a href="#" class="btn btn-primary">
-                Go somewhere
-              </a>
             </div>
           </div>
         ))}
