@@ -59,7 +59,7 @@ const HookTraductorState = () => {
               ></input>
             </div>
             <div className="col">
-              <h4>Frances</h4>
+              <h4>Francés</h4>
               <input
                 name="frances"
                 type="text"
@@ -109,8 +109,8 @@ const HookTraductorState = () => {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Español</th>
-                  <th scope="col">Ingles</th>
-                  <th scope="col">Frances</th>
+                  <th scope="col">Inglés</th>
+                  <th scope="col">Francés</th>
                 </tr>
               </thead>
               <tbody>
@@ -174,13 +174,13 @@ const HookTraductorState = () => {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Español</th>
+                <th scope="col">Inglés</th>
+                <th scope="col">Francés</th>
               </tr>
             </thead>
             <tbody>
-              {palabrasCoincidentes.length > 0 ? (
+              {palabrasCoincidentes.length > 0 &&
                 // array de palabras coincidentes
                 palabrasCoincidentes.map((trad, index) => {
                   return (
@@ -191,12 +191,7 @@ const HookTraductorState = () => {
                       <td>{trad.traducciones.frances}</td>
                     </tr>
                   );
-                })
-              ) : (
-                <div class="alert alert-warning" role="alert">
-                  o no has buscado cosas o no hay coincidencia{" "}
-                </div>
-              )}
+                })}
             </tbody>
           </table>
         </div>
