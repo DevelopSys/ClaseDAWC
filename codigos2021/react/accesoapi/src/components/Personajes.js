@@ -19,6 +19,7 @@ export const Personajes = () => {
 
     //console.log(datosJSON);
     setPersonajes(datosJSON);
+    setOtro((e)=>e+1);
   };
 
   //consumoAPI();
