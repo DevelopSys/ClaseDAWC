@@ -26,8 +26,9 @@ let sinDefinir;
 console.log(`El valor de la primera variable es ${sinValor}`);
 console.log(`El valor de la segunda variable es ${sinDefinir}`);
 
-console.log(typeof nombre); // string
-console.log(typeof numeroEntero); // number
-console.log(typeof decision); // boolean
-console.log(typeof sinDefinir); // undefined
-console.log(typeof sinValor); // object
+// ejemplo de declaradión de comentario de una sola línea
+
+/*
+Ejemplo de comentario de una línea multiple
+donde podemos escribir más de una cosa
+*/
