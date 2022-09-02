@@ -25,3 +25,9 @@ let sinValor = null;
 let sinDefinir;
 console.log(`El valor de la primera variable es ${sinValor}`);
 console.log(`El valor de la segunda variable es ${sinDefinir}`);
+
+console.log(typeof nombre); // string
+console.log(typeof numeroEntero); // number
+console.log(typeof decision); // boolean
+console.log(typeof sinDefinir); // undefined
+console.log(typeof sinValor); // object
