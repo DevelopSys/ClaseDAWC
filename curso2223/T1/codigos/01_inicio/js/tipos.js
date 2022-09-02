@@ -32,3 +32,15 @@ console.log(`El valor de la segunda variable es ${sinDefinir}`);
 Ejemplo de comentario de una línea multiple
 donde podemos escribir más de una cosa
 */
+
+let arrayDatos = [1, 2, 3, 4, 5, 6];
+let arrayIgualdad = [1, 2, 3, 4, 5, 6];
+
+let numeroUno = 2;
+let numeroDos = 2;
+
+console.log(numeroUno == numeroDos); // true
+console.log(arrayDatos == arrayIgualdad); // false
+
+let fecha = new Date();
+console.log(fecha);
