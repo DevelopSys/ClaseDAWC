@@ -25,3 +25,10 @@ let sinValor = null;
 let sinDefinir;
 console.log(`El valor de la primera variable es ${sinValor}`);
 console.log(`El valor de la segunda variable es ${sinDefinir}`);
+
+// ejemplo de declaradión de comentario de una sola línea
+
+/*
+Ejemplo de comentario de una línea multiple
+donde podemos escribir más de una cosa
+*/
