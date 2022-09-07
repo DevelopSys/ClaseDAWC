@@ -44,3 +44,9 @@ console.log(arrayDatos == arrayIgualdad); // false
 
 let fecha = new Date();
 console.log(fecha);
+
+let numeroDecimal = Math.PI; // declarado number
+numeroEntero = parseInt(numeroDecimal);
+
+console.log(typeof numeroDecimal);
+console.log(typeof numeroEntero);
