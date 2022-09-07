@@ -16,7 +16,20 @@ division = 10;
 modulo = 2;
 
 suma += 5; // suma = suma + 5 --> suma = 10 + 50
-resta += 5; // resta = resta + suma --> suma = 10 + 50
-multiplicacion += 5; // multiplicacion = multiplicacion + 5 --> multiplicacion = 10 * 2
-division += 5; // division = division + 5 --> division = 10 + 50
+resta += 5; // resta = resta - 5 --> suma = 10 - 50
+multiplicacion += 5; // multiplicacion = multiplicacion * 5 --> multiplicacion = 10 * 2
+division += 5; // division = division / 5 --> division = 10 / 50
 modulo += 5; // modulo = modulo % 50 --> modulo = 2 + 50
+
+let mayorQue = 100 > 10; // true
+let menorQue = 10 < 100; // true
+let mayorIgual = 100 >= 10; // true
+let menorIgual = 10 <= 100; // true
+let igual = 10 == 10; // true
+let noIgual = 100 != 10; // true
+
+let operandoUno = 4;
+let operandoDos = "4";
+
+console.log(operandoUno == operandoDos); // true
+console.log(operandoUno === operandoDos); // false
