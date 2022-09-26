@@ -1,1 +1,0 @@
-Esto es un ejemplo de lectura de fichero de texto plano
