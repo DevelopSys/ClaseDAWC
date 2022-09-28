@@ -190,3 +190,99 @@ numeros.forEach((value) => console.log(value));
 7
 3
 ```
+
+## Agregar / eliminar elementos dentro de un array
+
+Si nos damos cuenta en los casos anteriores, todos los arrays están definidos como const por lo que no pueden ser modificados. Sin embargo, si puede ser alterado su contenido. 
+
+A diferencia de Java y otros lenguajes, los arrays son dinámicos por lo que pueden cambiar sus elementos (hacerle crecer y decrecer). Para ello se pueden utilizar los métodos push pop shift unshift. Para ver las funcionalidades, vamos a partir del siguiente array:
+
+```javascript
+const equipos = ["Barcelona", "Madrid","Atletico","Betis"]
+```
+
+- Agregar al final de la lista: el método utilizado es push, el cual agrega entre 1 y n elementos al final de la lista. El método retorna la nueva longitud del array
+
+```javascript
+console.log(equipos.push("Sevilla")) // 5
+// siendo el array resultante ["Barcelona", "Madrid", "Atletico", "Betis","Sevilla"]
+```
+- Agregar al principio de la lista: el método utilizado es unshift,  el cual agrega entre 1 y n elementos al inicio de la lista. El método retorna la nueva longitud del array
+
+```javascript
+equipos.unshift("Getafe") // 6
+// siendo el array resultante ["Getafe,""Barcelona", "Madrid", "Atletico", "Betis","Sevilla"]
+```
+
+- Eliminar un elemento que está al final de la lista: el método utilizado es pop,  el cual agrega entre 1 y n elementos al inicio de la lista. El método retorna el elemento borrado
+
+```javascript
+equipos.pop()
+// siendo el array resultante ["Getafe,""Barcelona", "Madrid", "Atletico", "Betis"]
+
+```
+
+- Eliminar un elemento que está al principio de la listael método utilizado es shift,  el cual agrega entre 1 y n elementos al inicio de la lista. El método retorna el elemento borrado
+
+```javascript
+// siendo el array resultante ["Barcelona", "Madrid", "Atletico", "Betis"]
+```
+
+Otros métodos interesantes de los arrays son: 
+
+- .sort(): ordena alfabéticamente o numéricamente el contenido del array
+````javascript
+        arrayNombres = ["Borja", "Luis", "Jesus", "Roberto", "Manuel", "Victor"];
+        console.log("Array sin ordenar");
+        arrayNombres.forEach(element => {
+            console.log(element);
+
+        });
+
+        arrayNombres.sort();
+        console.log("Array ordenado");
+        arrayNombres.forEach(element => {
+            console.log(element);
+
+        });
+````
+
+- .reverse(): invierte el orden del array
+````javascript
+        arrayNombres = ["Borja", "Luis", "Jesus", "Roberto", "Manuel", "Victor"];
+        console.log("Array normal");
+        arrayNombres.forEach(element => {
+            console.log(element);
+
+        });
+
+        arrayNombres.reverse();
+        console.log("Array invertido");
+        arrayNombres.forEach(element => {
+            console.log(element);
+
+        });
+````
+
+- .join(): junta todos los elementos del array en una sola cadena 
+- .concat(): retorna dos arrays juntos
+
+````javascript
+        arrayUno = [1, 2, 3, 4];
+        arrayDos = [5, 6, 7, 8];
+        arrayJuntar = arrayUno.concat(arrayDos);
+        console.log(arrayJuntar.toString());
+````
+
+- .indexOf(): indica la posición de un elemento dado
+
+````javascript
+        arrayUno = [1, 2, 3, 4];
+        posicionNumero = arrayUno.indexOf(1);
+        if (arrayUno.indexOf(1) >= 0) {
+            console.log(`El índice del elemento 1 es ${posicionNumero}`);
+        } else {
+            console.log('El elemento no está presente');
+
+        }
+````

@@ -59,3 +59,8 @@ for (let index = 0; index < numeros.length; index++) {
 }
 
 numeros.forEach((value) => console.log(value));
+
+const equipos = ["Barcelona", "Madrid", "Atletico", "Betis"];
+equipos.unshift("Getafe");
+
+equipos.pop();
