@@ -70,3 +70,10 @@ En este caso cada uno de los elementos como se ha dicho está asociada a una pos
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
 |--|--|--|--|
 | Posiciones: | 0 | 1 | 2 | 3 |
+
+
+| Primera columna | Segunda columna | Tercera columna |
+| -- | -- | -- |
+| Contenido 1-1 | Contenido 1-2 | Contenido 1-3 |
+| Contenido 2-1 | Contenido 2-2 | Contenido 2-3 |
+| Contenido 3-1 | Contenido 3-2 | Contenido 3-3 |
