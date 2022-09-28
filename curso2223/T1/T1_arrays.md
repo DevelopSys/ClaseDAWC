@@ -68,4 +68,5 @@ const asignaturas = [
 En este caso cada uno de los elementos como se ha dicho está asociada a una posición, siendo la 0 la primera de ellas por lo tanto las posiciones de cada uno de los elementos serían las siguientes
 
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
+|--|--|--|--|
 | Posiciones: | 0 | 1 | 2 | 3 |
