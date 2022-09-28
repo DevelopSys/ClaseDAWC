@@ -13,3 +13,42 @@ const palabra =
   "Esto es un ejemplo de crear un array con contenido partiendo de una palabra";
 const arrayPalabras = palabra.split(" ");
 console.log(arrayPalabras);
+
+const asignaturas = [
+  "Desarrollo cliente",
+  "Desarrollo Servidor",
+  "Despliegue",
+  "Diseño",
+];
+
+console.log(asignaturas[0]); // Desarrollo cliente
+console.log(asignaturas[4]); // Diseño
+
+console.log(asignaturas[asignaturas.length - 1]);
+
+console.log("Construcción for normal");
+for (let index = 0; index < asignaturas.length; index++) {
+  const elemento = asignaturas[index];
+  console.log(elemento);
+}
+
+console.log("Construcción for of");
+for (const iterator of asignaturas) {
+  // donde iterator es el elemento directamente
+  console.log(iterator);
+}
+
+console.log("Construccion for in");
+for (const key in asignaturas) {
+  // donde key es la posición
+  console.log(asignaturas[key]);
+}
+
+console.log("Construcción foreach");
+asignaturas.forEach((item) => console.log(item));
+
+asignaturas.forEach((item, index, array) =>
+  console.log(`Elemento en la posición ${index} con un valor de ${item}`)
+);
+
+asignaturas[4] = "Diseño interfaces web";
