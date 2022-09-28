@@ -52,3 +52,10 @@ asignaturas.forEach((item, index, array) =>
 );
 
 asignaturas[4] = "Diseño interfaces web";
+
+const numeros = Array(10);
+for (let index = 0; index < numeros.length; index++) {
+  numeros[index] = parseInt(Math.random() * 10 + 1);
+}
+
+numeros.forEach((value) => console.log(value));

@@ -69,8 +69,7 @@ En este caso cada uno de los elementos como se ha dicho está asociada a una pos
 
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
 | -- | -- | -- | -- | -- |
-| Posiciones:
-| 0 | 1 | 2 | 3 |
+| Posiciones: | 0 | 1 | 2 | 3 |
 
 Para poder acceder a cada uno de los elementos, simplemente es necesario indicar la posición que se quiere acceder
 
@@ -168,3 +167,26 @@ se cambiará por
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño de interfaces web |
 | -- | -- | -- | -- | -- |
 | Posiciones: | 0 | 1 | 2 | 3 |
+
+En el caso de querer hacer una modificación masiva de un array, por ejemplo asignar 10 números aleatorios se podría hacer mediante una sentencia de repetición
+
+```javascript
+const numeros = Array(10);
+for (let index = 0; index < numeros.length; index++) {
+  numeros[index] = parseInt(Math.random() * 10 + 1);
+}
+
+numeros.forEach((value) => console.log(value));
+
+// SALIDA
+10
+4
+6
+5
+2
+9
+1
+9
+7
+3
+```
