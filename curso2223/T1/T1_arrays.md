@@ -72,6 +72,6 @@ En este caso cada uno de los elementos como se ha dicho está asociada a una pos
 | Posiciones: | 0 | 1 | 2 | 3 |
 
 
-| Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
-| -- | -- | -- | -- |
-| 0 | 1 | 2 | 3 |
+| Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
+| -- | -- | -- | -- | -- |
+| Posiciones: | 0 | 1 | 2 | 3 |
