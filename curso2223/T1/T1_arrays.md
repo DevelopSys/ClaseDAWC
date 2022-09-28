@@ -161,12 +161,10 @@ En este caso se asignará un nuevo valor, modificando el anterior
 
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño |
 | -- | -- | -- | -- | -- |
-| Posiciones:
-| 0 | 1 | 2 | 3 |
+| Posiciones: | 0 | 1 | 2 | 3 |
 
 se cambiará por
 
 | Elementos: | Desarrollo cliente | Desarrollo Servidor | Despliegue | Diseño de interfaces web |
 | -- | -- | -- | -- | -- |
-| Posiciones:
-| 0 | 1 | 2 | 3 |
+| Posiciones: | 0 | 1 | 2 | 3 |
