@@ -219,7 +219,6 @@ equipos.unshift("Getafe") // 6
 ```javascript
 equipos.pop()
 // siendo el array resultante ["Getafe,""Barcelona", "Madrid", "Atletico", "Betis"]
-
 ```
 
 - Eliminar un elemento que está al principio de la listael método utilizado es shift,  el cual agrega entre 1 y n elementos al inicio de la lista. El método retorna el elemento borrado
@@ -227,7 +226,27 @@ equipos.pop()
 ```javascript
 // siendo el array resultante ["Barcelona", "Madrid", "Atletico", "Betis"]
 ```
+## Filtrado sobre arrays
 
+Además de poder acceder a elementos y añadir y borrar cosas, es posible realizar acciones de filtrado sobre un array. Para ello existen una serie de métodos que me dan diferentes posibilidades, entre los que destacan:
+
+- find: método que permite hacer una búsqueda sobre un array de elementos. La función que recibe como parámetros es una funcion de flecha muy del estilo del foreach, con la diferencia que la parte de la ejecución tiene que retornar un boolean
+
+```javascript
+equipos.find((element, index) => element.includes("R.")); // R. Madrid
+```
+
+En este caso encuentra la primera ocurrencia
+
+- filter: método muy parecido al anterior, con la diferencia que en este caso en vez de retornar el primer elemento que encuentre con el predicado indicado, se reotrnará todos los elementos que cumplan una condición concreta (o que no cumplan una condición)
+
+```javascript
+let elementosFiltrados = equipos.filter((value) => value.length > 8);
+console.log(elementosFiltrados);
+// (2) ['Barcelona', 'R. Madrid']
+```
+
+## Otros métodos
 Otros métodos interesantes de los arrays son: 
 
 - .sort(): ordena alfabéticamente o numéricamente el contenido del array

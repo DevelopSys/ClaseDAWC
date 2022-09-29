@@ -60,7 +60,10 @@ for (let index = 0; index < numeros.length; index++) {
 
 numeros.forEach((value) => console.log(value));
 
-const equipos = ["Barcelona", "Madrid", "Atletico", "Betis"];
-equipos.unshift("Getafe");
+const equipos = ["Barcelona", "R. Madrid", "Atletico", "R. Betis"];
 
-equipos.pop();
+let elemento = equipos.find((element, index) => element.includes("R.")); // R. Madrid
+console.log(elemento);
+
+let elementosFiltrados = equipos.filter((value) => value.length > 8);
+console.log(elementosFiltrados);
