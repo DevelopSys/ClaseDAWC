@@ -493,6 +493,54 @@ console.log('%c Mi nombre es %s y tengo %d años', 'background: #3EBDFF;', nombr
 
 En este caso aparecería un texto por consola con el fondo de color azul. Es importante tener en cuenta que el formato de css debería aparecer en la primera posición.
 
+# Interacción básica con el usuario
+
+## Prompt y alert<a name="usuario"></a>
+
+Para poder interactura con el usuario mediante consola, se utilizan los siguientes métodos:
+
+- Window.alert(): muestra una ventana por consola
+
+```javascript
+alert("El proceso se ha terminado");
+```
+
+- Window.confirm(): pide confirmación al usuario dando la opción de aceptar o cancelar. Para poder tratar la respuesta se debe guardar en una variable la salida de la función confirm.
+
+```javascript
+let confirmacion = confirm("¿estás seguro que quieres terminar el proceso?");
+if (confirmacion) {
+  alert("El proceso se ha terminado");
+}
+```
+
+- Window.prompt(): pide un dato al usuario mediante una ventana emergente. De la misma forma que en el caso anterior, se deberá guarda la salida en una variable para poder tratarla más adelante
+
+```javascript
+var nombreIntroducido = prompt("por favor introduce tu nombre");
+```
+
+En el caso de querer tratar la variable se realizaría de una forma normal
+
+```javascript
+let nombreIntroducido = prompt("por favor introduce tu nombre");
+let respuesta = confirm(
+  `¿Estás seguro que quieres evaluar el nombre ${nombreIntroducido}?`
+);
+if (respuesta) {
+  tieneAes = nombreIntroducido.toLowerCase().includes("a");
+  if (tieneAes) {
+    alert("El nombre introducido tiene alguna a");
+  } else {
+    alert("El nombre introducido no tiene ninguna a");
+  }
+} else {
+  alert("Proceso terminado");
+}
+```
+
+Hay que tener en cuenta que este método devuelve el dato introducido en formato String, por lo que si se quiere en formatu número habría que utilizar el parseInt() o parseFloat() o el Number()
+
 # Operadores
 
 Al igual que en el resto de lenguajes de programación, en js existen los tipocos operadores de asignación, aritméticos, lógicos, de desplazamiento, etc...
