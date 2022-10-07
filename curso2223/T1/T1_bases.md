@@ -428,6 +428,40 @@ console.log(palabra.indexOf("R")); // 0
 console.log(palabra.lastIndexOf("r")); // 29
 ```
 
+## Objeto Date
+
+Como ya hemos visto en los tipos existe un objeto que es de tipo Object. Este tipo representa objetos que nosotros podemos crear mediante clases ya creadas o utilizar alguno de los que ya existen dentro del lenguaje. En este apartado vamos a tratar un objeto especial llamado Date, el cual permite controlar las fechas y tiempos tanto del calendario del sistema como de alguna fecha en concreto.
+
+Para pode crear un objeto de tipo Date, simplemente es necesario crear una instancia del mismo
+
+```javascript
+let fecha = new Date();
+```
+
+Existe la posibilidad de utilizar otros constructores indicando cual es la fecha actual (día mes año). En el caso de no indicar nada creará un objeto con la fecha del sistema asignada. Alguno de los método principales son:
+
+```javascript
+let fecha = new Date();
+console.log(fecha.getFullYear());
+console.log(fecha.getMonth() + 1);
+console.log(fecha.getDate());
+console.log(fecha.getDay());
+console.log(fecha.getHours());
+console.log(fecha.getMinutes());
+console.log(fecha.getSeconds());
+console.log(fecha.getTime());
+```
+
+Como se puede ver su uso es bastante sencillo. Alguna de las funciones que suelen ser recurrentes sobre este tipo de objeto es la comparación. Por ejemplo podemos ver su uno de los días ha ocurrido antes que el otro, simplemente utilizando los comparadores lógicos de relación <= < > >=. En el caso de querer utilizar los comparadores == != es necesario utilizar el método getTime() para que los resultados sean los correctos.
+
+```javascript
+let fecha1 = new Date(2020, 2, 21);
+let fecha2 = new Date(2020, 3, 21);
+
+let comparacion = fecha1 < fecha2;
+console.log(`El resultado de la comparación es ${comparacion}`);
+```
+
 # Formato de salida
 
 Normalmente la forma en la que será la salida es mediante asociación a elementos del DOM de la web a la que el script se asocia. Pero también es posible sacar datos por consola como se ha visto mediante el método console.log().
