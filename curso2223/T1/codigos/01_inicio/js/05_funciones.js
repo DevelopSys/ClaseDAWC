@@ -58,5 +58,4 @@ const sumaRetornoDos = (op1, op2) => {
 };
 
 console.log(sumaRetorno(1, 2)); // 3
-console.log("Con return");
 console.log(sumaRetornoDos(1, 2)); // 3
