@@ -1,11 +1,14 @@
 # Funciones
 
-Las funciones son todos aquellos métodos que se quieren ejecutar en determinadas partes de una aplicación web, pudiendo ser llamadas en cualquier momento lo que favorece la reutilización.
+Las funciones son uno de los elementos principales de JS. Se puede definir función como todo aquel método que se quiere ejecutar en determinadas partes de una aplicación, pudiendo ser llamada en cualquier momento favoreciendo la reutilización.
 
 La estructura básica de una función es la siguiente:
 
 ```javascript
 function name(params) {}
+
+// para ser llamada simplemente es necesario llamar al nombre y pasar los parámetros que se quieran
+name()
 ```
 
 Del mismo modo una función también se puede asociar a una variable de la siguiente forma.
@@ -37,14 +40,15 @@ Como en todo lenguaje de programación, las funciones van acompañadas tanto de 
 function suma(operando1, operando2) {
   var suma = operando1 + operando2;
   console.log(
-    `La suma de los dos parámetos pasados a la función es de: ${suma}`
+    `La suma de los dos parámetros pasados a la función es de: ${suma}`
   );
 }
 
 suma(2, 5);
+// ejecutando la suma de ámbos parámetros e imprimiendo por consola el resultado (pero realizado desde la propia función)
 ```
 
-Se pueden pasar tantos parámetros como sean necesarios. En el caso de pasar más valores por argumento que los declarados en la función no da error
+Se pueden pasar tantos parámetros como sean necesarios. En el caso de pasar más valores por argumento que los declarados en la función no da error, ya que los gestiona como veremos más adelante con un array de elementos.
 
 ```javascript
 function suma(operando1, operando2) {
@@ -57,7 +61,15 @@ function suma(operando1, operando2) {
 suma(2, 5, 5);
 ```
 
-En el caso de pasar menos de los indicados pasa exactamente lo mismo, dando valores undefined a aquellos parámetros que no sean pasados, obteniendo como valor NaN (Not - a - Number)
+En el caso de las funciones de flecha, esto no es posible. Hay que indicar de forma explícita que la función puede admitir un numero grande de parámetos
+
+```javascript
+const funcionFlecha = (...args) => {
+  console.log(args.length);
+};
+```
+
+En el caso de pasar menos de los indicados pasa exactamente lo mismo, si se capturan dentro de la función dará valores undefined a aquellos parámetros que no sean pasados, obteniendo como valor NaN (Not - a - Number) en el caso del ejemplo de la suma
 
 ```javascript
 function suma(operando1, operando2) {
@@ -112,6 +124,39 @@ function funcionDefecto(obligatorio, defecto = "defecto") {
 }
 ```
 
+Hay que tener cuidado, porque los parámetros optativos siempre deben ir en las últimas posiciones.
+
+Este tipo de cosas permite el uso de requerir parámetros de forma obligatoria. Para ello nos podemos crear una funcion que lance una excepción (Error en js) y que esta sea el valor por defecto de un parámetro que no sea pasado a una función. Imaginemos el siguiente caso:
+
+```javascript
+function sumaObligatorios(operandoUno,operandoDos) {}
+```
+Donde queremos que los dos sean obligatorios. En el caso de js, tal y como se ha visto, la función podría ser llamada con y sin parámetros. Sin embargo si nos creamos una función que lance una excepción
+
+```javascript
+function requerido() {
+    throw new SyntaxError('parámetro requerido')
+}
+```
+
+Esta puede ser el valor por defecto de los parámetros que queramos que no tengan valor. Por ello si modificamos la función de suma, obtendríamos lo siguiente
+
+```javascript
+function sumaObligatorios(operandoUno, operandoDos = requerido()) {
+  console.log(
+    `La suma de los valores ${operandoUno} y ${operandoDos} es: ${
+      operandoUno + operandoDos
+    }`
+  );
+}
+```
+De esta forma podríamos llamar a la función solo con dos valores y nunca con uno, ya que de ser así saltaría la excepción y la aplicación se detendría
+
+```javascript
+sumaObligatorios(10, 8); // funciona y el resultado es 18
+sumaObligatorios(2); // falla y salta una excepción
+```
+
 - Uso de arguments o argumentos invisibles
 
 En muchas ocasiones no es necesario pasar argumentos por una función, o no saber cuantos son necesarios. Para ello JS ofrece la posibilidad de utilizar el array arguments, ya incluido en todas las funciones. Con este array se puede acceder a los argumentos "adicionales" pasados en la llamada a la función.
@@ -132,29 +177,32 @@ function argumentosInvisibles() {
 argumentosInvisibles(1, "llamada", false, 3.14);
 ```
 
-Este uso solo funciona para funciones con construcción normal. En el caso de querer utilizar lo mismo con una función de flecha se trendrían que utilizar el parámetro de array
+Este uso solo funciona para funciones con construcción normal. En el caso de querer utilizar lo mismo con una función de flecha se tendría que utilizar el parámetro de array
+
+Es importante saber que cuando se utilizan parámetros por defecto, el array arguments no los recoge:
+
+```javascript
+function funcionArguments(param1, param2 = 2, param3) {
+    console.log(`Los valores pasados son ${param1}\n${param2}\n${param3}`);
+    console.log(`El número de parámetros pasados es ${arguments.length}`); // me devuelve 2
+}
+
+funcionArguments(1, 4);
+```
 
 - Valores de retorno
 
-Cuando el llamamiento de una función requiere ademas de ejecutar todo su contenido, la devolución de algún valor se utiliza la palabra reservada return:
+Cuando la llamada de una función requiere ademas de ejecutar todo su contenido, la devolución de algún valor se utiliza la palabra reservada return:
 
 ```javascript
-function argumentosInvisibles() {
-  console.log(
-    "La función ha sido llamada con " +
-      arguments.length +
-      "y son los siguientes"
-  );
-  for (let index = 0; index < arguments.length; index++) {
-    const element = arguments[index];
-    console.log(element);
-  }
+function sumaValores(operadorUno, operadosDos) {
+  return operadorUno + operadosDos;
 }
 
-argumentosInvisibles(1, "llamada", false, 3.14);
+console.log(`El resultado de la suma es ` + sumaValores(4, 9));
 ```
 
-Cuidado porque los valores de retorno no solo tienen por que ser números, letras o boleados, sino que también pueden ser funciones, como se verá en el siguiente punto. Una cosa importante es que sobre una función no pueden existir tipos de retorno diferentes
+Cuidado porque los valores de retorno no solo tienen por que ser números, letras o boleados, sino que también pueden ser funciones, como se verá en el siguiente punto. Una cosa importante es que sobre una función no pueden existir tipos de retorno diferentes a no ser que retornemos algo de tipo Any[]
 
 - Funciones anónimas
 
@@ -167,7 +215,6 @@ var funcionAnonima = function (parametro) {
 
 funcionAnonima("Hola");
 ```
-
 Ó
 
 ```javascript
@@ -177,6 +224,34 @@ function retornaFuncion() {
   };
 }
 retornaFuncion();
+```
+## Funciones de flecha
+
+Aunque ya se ha hablado de este tipo de funciones a lo largo del tema, las funciones de flecha dan la posibilidad de escribir una función de forma muy simplificada. Su sintaxis es la siguiente
+
+```javascript
+(param)=>{ejecuciones}
+```
+
+Alguna de las consideraciones de las funciones de flecha son las siguientes:
+
+- Normalmente están asignadas a variables, de forma idéntica que las funciones anónimas
+- En el caso de estar declaradas como parámetros de una funcion no es necesario asociarlas a una variable
+- No es necesario poner las {} para definir el cuerpo de la función siempre y cuando este solo está formado por una línea
+- En el caso de querer utilizar retorno pueden darse dos casos: 
+  - que el cuerpo de la función esté formado por una sola línea, por lo que no tendrá {} y no será necesario poner la palabra return ya que se da por echo que esa línea es el propio retorno
+  - que el cuerpo de la función esté formado por más de una línea, por lo que si sería obligatorio el uso de la palabra reservada return
+
+```javascript
+const sumaRetorno = (op1, op2) => op1 + op2;
+
+const sumaRetornoDos = (op1, op2) => {
+  sumaValor = op1 + op2;
+  return sumaValor;
+};
+
+console.log(sumaRetorno(1, 2)); // 3
+console.log(sumaRetornoDos(1, 2)); // 3
 ```
 
 ## Callbacks
