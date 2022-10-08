@@ -12,8 +12,10 @@ console.log(fecha.getTime());
 let fecha1 = new Date(2020, 2, 21);
 let fecha2 = new Date(2020, 3, 21);
 
+
+
 let comparacion = fecha1 < fecha2;
 console.log(`El resultado de la comparación es ${comparacion}`);
 
 let diferencia = fecha1 - fecha2;
-console.log(new Date(diferencia));
+
