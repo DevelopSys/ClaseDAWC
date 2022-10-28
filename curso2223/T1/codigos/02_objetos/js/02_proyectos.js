@@ -1,19 +1,27 @@
 class Proyecto {
   participantes = Array();
 
-  constructor(nombre, presupuesto, tecnologia) {
+  constructor(nombre, presupuesto) {
     this.nombre = nombre;
     this.presupuesto = presupuesto;
-    this.tecnologia = tecnologia;
   }
 
   mostrarDatos() {
     console.log("los datos del proyecto actual son:");
     console.log(`Participantes: ${this.participantes}`);
     console.log(`Presupuesto: ${this.presupuesto}`);
-    console.log(`Tecnología: ${this.tecnologia}`);
+  }
+
+  get getParticipantes() {
+    return this.participantes;
+  }
+
+  set setParticipantes(participantes) {
+    this.participantes = participantes;
   }
 }
 
-let proyecto = new Proyecto("Desarrollo Web", 10000, "React");
-proyecto.mostrarDatos();
+//let proyecto = new Proyecto("Desarrollo Web", 10000, "React");
+//proyecto.mostrarDatos();
+//proyecto.setParticipantes = ["Borja", "Juan"];
+//console.log(proyecto.getParticipantes);

@@ -232,3 +232,151 @@ class Proyecto {
 
 let proyecto = new Proyecto("Desarrollo Web", 10000, "React");
 ```
+
+Algunas de las consideraciones adicionales a la hora de trabajar con clases en js son las siguientes 
+
+- Declaración de variables privadas: Son aquellas que no son visibles desde fuera de la clase. Para poder declarar una variable com privada es necesario el uso del caracter # antes del nombre de la variable:
+
+```javascript
+class Proyecto {
+  #participantes = Array();
+
+  constructor(nombre, presupuesto, tecnologia) {
+    this.nombre = nombre;
+    this.presupuesto = presupuesto;
+    this.tecnologia = tecnologia;
+  }
+
+  mostrarDatos() {
+    console.log("los datos del proyecto actual son:");
+    console.log(`Participantes: ${this.participantes}`);
+    console.log(`Presupuesto: ${this.presupuesto}`);
+    console.log(`Tecnología: ${this.tecnologia}`);
+  }
+}
+
+let proyecto = new Proyecto("Desarrollo Web", 10000, "React");
+proyecto.mostrarDatos();
+console.log(
+  `Los participantes del proyecto tienen son ${proyecto.participantes.size} personas`
+); // error
+
+```
+
+En este caso la variable participantes se declara como privada, por lo que no podría ser accesible desde fuera de la clase
+
+- Métodos setter / getter: Los métodos setter y getter permiten el acceso a las variables de forma directa tanto para ver el contenido como para cambiarlo. Para poder declarar métodos getter y setter, es necesario acompañar de la palabra get o set a cada uno de los métodos: 
+
+```javascript
+class Proyecto {
+  participantes = Array();
+
+  constructor(nombre, presupuesto, tecnologia) {
+    this.nombre = nombre;
+    this.presupuesto = presupuesto;
+    this.tecnologia = tecnologia;
+  }
+
+  get getParticipantes() {
+    return this.participantes;
+  }
+
+  set setParticipantes(participantes) {
+    this.participantes = participantes;
+  }
+}
+
+let proyecto = new Proyecto("Desarrollo Web", 10000, "React");
+proyecto.setParticipantes = ["Borja", "Juan"];
+console.log(proyecto.getParticipantes);
+```
+
+Si nos damos cuenta, en el proyecto, cuando se accede a la propiedad participantes, se realiza mediante los métodos geter y seter creados. Sin embargo en código se realiza como si fuese una variable. Esto se debe a que los métodos tratan a la variable como tal.
+
+- Herencia y polimorfimso: Al igual que pasa en cualquier lenguaje de programación orientado a objetos, existe la posibilidad de utilizar las clases como base de otras. Esto es el conceto de herencia. Partiendo del ejemplo del punto anterior puede ser interesante que la clase proyecto sea la base de otras dos clases que especializan a este, como pueden ser proyectos tecnológicos y proyectos legales. Para ello se utiliza la palabra reservada extends en el caso de querer partir de una clase
+
+```javascript
+// clase del proyecto
+
+class Proyecto {
+  participantes = Array();
+
+  constructor(nombre, presupuesto) {
+    this.nombre = nombre;
+    this.presupuesto = presupuesto;
+  }
+
+  mostrarDatos() {
+    console.log("los datos del proyecto actual son:");
+    console.log(`Participantes: ${this.participantes}`);
+    console.log(`Presupuesto: ${this.presupuesto}`);
+  }
+
+  get getParticipantes() {
+    return this.participantes;
+  }
+
+  set setParticipantes(participantes) {
+    this.participantes = participantes;
+  }
+}
+
+// clase del proyecto_legal
+class ProyectoLegal extends Proyecto {
+  ley;
+
+  constructor(nombre, presupuesto, ley) {
+    super(nombre, presupuesto);
+    this.ley = ley;
+  }
+
+  mostrarDatos() {
+    super.mostrarDatos();
+    console.log(`La ley que aplica es la de ${this.ley}`);
+  }
+}
+
+let proyectoLegal = new ProyectoLegal(
+  "Subvención ministerio",
+  10000,
+  "2000/10"
+);
+
+proyectoLegal.mostrarDatos();
+```
+
+Como aún no sabemos modularizar, para poder hacer esto funcional, en el archivo que llama a los archivos.js (el index), es necesario cargar tanto el .js del proyecto legal como el del proyecto. Imaginemos que también tenemos carga una clase que es ProyectoTecnológico. En este punto podriamos hacer un array de los mismos tipos y en el recorrido llamar a una misma funcion
+
+```javascript
+class ProyectoTecnologico extends Proyecto {
+  tecnologia;
+
+  constructor(nombre, presupuesto, tecnologia) {
+    super(nombre, presupuesto);
+    this.tecnologia = tecnologia;
+  }
+
+  mostrarDatos() {
+    super.mostrarDatos();
+    console.log(`La ley tecnología es ${this.tecnologia}`);
+  }
+}
+
+let proyectoLegalSub = new ProyectoLegal(
+  "Subvención ministerio",
+  10000,
+  "2000/10"
+);
+
+let proyectoTecnológicoWeb = new ProyectoTecnologico(
+  "Desarrollo web",
+  1000000,
+  "React"
+);
+
+var proyectos = [proyectoTecnológicoWeb, proyectoLegalSub];
+
+proyectos.forEach((element) => {
+  element.mostrarDatos();
+});
+```
