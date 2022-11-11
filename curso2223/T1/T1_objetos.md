@@ -9,7 +9,7 @@ Los objetos en javascript son una entidad que permite guardar un conjunto de pro
 
 ## Objetos literales
 
-Los objetos literales son aquellos que estan definidos de forma direacta (tal y como su nombre indica). Es lo que en programación se conoce como un objeto de tipo JSON (JavaScrip Object Notation). Estos objetos representan un conjunto de funciones y valores en formato par clave-valor, los cuales pueden ser accedidos y modificados en cualquier momento. Para crear un objeto literal se utiliza la siguiente sintaxis:
+Los objetos literales son aquellos que están definidos de forma directa (tal y como su nombre indica). Es lo que en programación se conoce como un objeto de tipo JSON (JavaScrip Object Notation). Estos objetos representan un conjunto de funciones y valores en formato par clave-valor, los cuales pueden ser accedidos y modificados en cualquier momento. Para crear un objeto literal se utiliza la siguiente sintaxis:
 
 ```javascript
 const nombreObjeto = {propiedad = valor,propiedad2: valor2, propiedad3: valor3 }
@@ -183,7 +183,7 @@ Una cosa importante a tener en cuenta es que, una vez freezeados los objetos, no
 
 ## Crear objetos por clases
 
-Como se acaba de ver, es posible crear un objeto a partir de otro mediante el prototipo. Sin embargo no es la aforma más común de trabajar con objetos que dependen de otros. Para esto está el concepto de clase. PAra poder crear una clase la sitaxis es la siguiente:
+Como se acaba de ver, es posible crear un objeto a partir de otro mediante el prototipo. Sin embargo no es la forma más común de trabajar con objetos que dependen de otros. Para esto está el concepto de clase. PAra poder crear una clase la sintaxis es la siguiente:
 
 ```javascript
 class Proyecto {
@@ -293,7 +293,7 @@ console.log(proyecto.getParticipantes);
 
 Si nos damos cuenta, en el proyecto, cuando se accede a la propiedad participantes, se realiza mediante los métodos geter y seter creados. Sin embargo en código se realiza como si fuese una variable. Esto se debe a que los métodos tratan a la variable como tal.
 
-- Herencia y polimorfimso: Al igual que pasa en cualquier lenguaje de programación orientado a objetos, existe la posibilidad de utilizar las clases como base de otras. Esto es el conceto de herencia. Partiendo del ejemplo del punto anterior puede ser interesante que la clase proyecto sea la base de otras dos clases que especializan a este, como pueden ser proyectos tecnológicos y proyectos legales. Para ello se utiliza la palabra reservada extends en el caso de querer partir de una clase
+- Herencia y polimorfismo: Al igual que pasa en cualquier lenguaje de programación orientado a objetos, existe la posibilidad de utilizar las clases como base de otras. Esto es el concepto de herencia. Partiendo del ejemplo del punto anterior puede ser interesante que la clase proyecto sea la base de otras dos clases que especializan a este, como pueden ser proyectos tecnológicos y proyectos legales. Para ello se utiliza la palabra reservada extends en el caso de querer partir de una clase
 
 ```javascript
 // clase del proyecto
@@ -345,7 +345,7 @@ let proyectoLegal = new ProyectoLegal(
 proyectoLegal.mostrarDatos();
 ```
 
-Como aún no sabemos modularizar, para poder hacer esto funcional, en el archivo que llama a los archivos.js (el index), es necesario cargar tanto el .js del proyecto legal como el del proyecto. Imaginemos que también tenemos carga una clase que es ProyectoTecnológico. En este punto podriamos hacer un array de los mismos tipos y en el recorrido llamar a una misma funcion
+Como aún no sabemos modular, para poder hacer esto funcional, en el archivo que llama a los archivos.js (el index), es necesario cargar tanto el .js del proyecto legal como el del proyecto. Imaginemos que también tenemos carga una clase que es ProyectoTecnológico. En este punto podríamos hacer un array de los mismos tipos y en el recorrido llamar a una misma función
 
 ```javascript
 class ProyectoTecnologico extends Proyecto {
@@ -379,4 +379,239 @@ var proyectos = [proyectoTecnológicoWeb, proyectoLegalSub];
 proyectos.forEach((element) => {
   element.mostrarDatos();
 });
+```
+
+## Objetos con notacion JSON
+
+A la hora de comunicar servicios web entre sí, una de las formas más comunes es mediante lo que se conoce con las siglas de JSON, las cuales hacen referencia a JavaScript Object Notation. Por definición un elemento de este tipo es un objeto creado en JavaScript que permite la asociación de elementos con un par clave - valor. Es muy utilizado como elemento de intercambio por su poco peso y su facilidad de uso. En este punto vamos a ver como trajabar con json desde el lenguaje. Antes que nada vamos a ver que es un objeto json. Siguiente el ejemplo que tenníamos de los proyectos, vamos a crear un JSON que represente un objeto de tipo proyecto, con las características de nombre, presupuesto y participantes. Para ello es necesario empezar la notacion con las llevas ({}), seguidas de la clave asociada y el valor asociado. Se podrán definir tantos pares como sean necesarios. 
+
+```javascript
+let proyecto = {
+  nombre: "Desarrollo Web",
+  presupuesto: 10000,
+  participantes: ["Borja", "Juan", "Luis"],
+};
+```
+Como se puede ver, tenemos una variable que está creada en formato json, donde cada uno de las claves tiene asignada un valor. Es importante ver que los tipos de los valores pueden ser cualquiera siempre y cuando el lenguaje lo admita, incluso otro objeto uo una función como veremos más adelante.
+
+A la hora de acceder a los datos que tiene asociado un json se puede hacer directemante a la posicion con el nombre, o con el nombre tal cual. Hay que tneer en cuenta que dependiendo de cual sea el tipo de dato que está asociado a la clave, es posible que sea necesario un acceso diferente
+
+```javascript
+console.log(proyecto.nombre); // Desarrollo Web
+
+console.log(proyecto.participantes[0]); // Borja
+```
+
+Además de poder asociad tipos a claves, también es posible agregar funciones dentro del objeto json, tal y como sería en una declaración de función anónima.
+
+```javascript
+let proyecto = {
+  nombre: "Desarrollo Web",
+  presupuesto: 10000,
+  participantes: ["Borja", "Juan", "Luis"],
+  agregarParticiante : function (particiapante) {
+    this.participantes.push(particiapante)
+  }
+};
+
+proyecto.agregarParticiante("Diego");
+console.log(proyecto.participantes);
+```
+
+En el caso de querer acceder mediante el nombre de la clave como posición del objeto es necesario hacerlo mediante string
+
+```javascript
+console.log(proyecto['nombre']);
+```
+
+Esta es la estructura básica de los objetos json. Lo normal es que estos están ubicados en una estructura aún mayor, donde todos los elementos se guarden por posiciones. 
+
+```javascript
+const proyectosEmpresa = [
+  {
+    nombre: "Desarrollo Web",
+    presupuesto: 10000,
+    participantes: ["Borja", "Juan", "Luis"],
+    agregarParticiante: function (particiapante) {
+      this.participantes.push(particiapante);
+    },
+  },
+  {
+    nombre: "Desarrollo Java",
+    presupuesto: 50000,
+    participantes: ["Dani", "Igor", "Laura", "Tomas"],
+    agregarParticiante: function (particiapante) {
+      this.participantes.push(particiapante);
+    },
+  },
+  {
+    nombre: "Desarrollo BI",
+    presupuesto: 100000,
+    participantes: ["Aitor", "Dario", "Cristian", "Alejandro"],
+    agregarParticiante: function (particiapante) {
+      this.participantes.push(particiapante);
+    },
+  },
+  ,
+];
+```
+
+Así, cada uno de los objetos está dentro de una posición de un array común. Ahora se podrían acceder individualmente o directamente filtrar o recorrer como array que son:
+
+```javascript
+
+console.log(
+  `El proyecto ${proyectosEmpresa[0].nombre} tiene ${proyectosEmpresa[0].participantes.length}`
+);
+proyectosEmpresa[1].agregarParticiante("Nuevo trabajador");
+console.log(
+  `El proyecto ${proyectosEmpresa[1].nombre} tiene ${proyectosEmpresa[1].participantes.length}`
+);
+
+console.log(
+  `En la empresa hay ${
+    proyectosEmpresa.filter((it) => it.presupuesto > 50000).length
+  } proyectos que superan los 50000€ de presupuesto`
+);
+```
+
+Normalmente este tipo de objetos se suele obtener mediante peticiones http con funciones fetch o ajax que se verán más adelante. 
+
+## Destructuración de objetos, arrays y json
+
+La sintaxis de desestructuración es una expresión que permite desempacar valores de arrays o propiedades de objetos en distintas variables de forma automática. Es muy útil cuando se quiere trabajar con elementos de un objeto y no se quiere realizar tareas de extracción de variables mediante getter/setter.
+
+### En objetos
+
+Para explicar la destructuración en objetos vamos a partir del objeto creado en el punto anterior
+
+```javascript
+let proyecto = {
+  nombre: "Desarrollo Web",
+  presupuesto: 10000,
+  participantes: ["Borja", "Juan", "Luis"],
+  agregarParticiante : function (particiapante) {
+    this.participantes.push(particiapante)
+  }
+};
+```
+De forma normal si queremos obtener una variable por cada uno de los elementos del objeto haríamos lo siguiente: 
+
+```javascript
+let nombre = proyecto.nombre;
+let presupuesto = proyecto.presupuesto;
+let participantes = proyecto.participantes;
+
+console.log(nombre);
+console.log(presupuesto);
+console.log(participantes);
+```
+
+Esta sería la forma "común" de hacerlo. Sin embargo con la destructuración la cosa se resumiría bastante, quedando lo siguiente
+
+```javascript
+let { nombre, presupuesto, participantes } = proyecto;
+console.log(nombre);
+console.log(presupuesto);
+console.log(participantes);
+```
+
+Esto es bastante útil ya que obtenemos tres variables de golpe sin necesidad de tratarlas individualmente, siempre teniendo en cuenta que las propiedades de desempacas existan y se llamen de la misma forma en el objeto. 
+
+En el caso de querer cambiarle el nombre a la nueva variable y que no se llame igual que la propiedad se identifica con los : despues de la propiedad a destructurar
+
+
+```javascript
+ let { nombre: nombreNuevo, presupuesto: presupuestoNuevo, participantes: participantesNuevos } = proyecto;
+console.log(nombreNuevo);
+console.log(presupuestoNuevo);
+console.log(participantesNuevos);
+```
+
+Pero la cosa no acaba ahí. Imaginemos que tenemos una función que recibe por parámetros un objeto de tipo proyecto, pero en realidad lo que nos interesa de ese parámetro solo son dos características como son el nombre y el presupuesto. Entonces podemos hacer la destructuración en la propia declaración de la función
+
+```javascript
+function tratarProyecto({ nombre, presupuesto }) {
+  console.log(
+    `Del proyecto recibido, se ha destructurado el nombre: ${nombre} y el presupuesto ${presupuesto}`
+  );
+}
+
+tratarProyecto(proyecto);
+
+// Del proyecto recibido, se ha destructurado el nombre: Desarrollo Web y el presupuesto 10000
+```
+
+### En arrays
+
+Al igual que se pueden destucturar objetos, con los arrays pasa algo idéntico, con la diferencia que al no tener variables con nombres asignados, a la hora de destucturar un array se asignan a variables según posiciones. Para este ejemplo vamos a tomar como punto de partida los participantes de uno de los proyectos del caso anterior
+
+
+```javascript
+let participantes = ["Borja", "Juan", "Luis", "Jose"];
+
+let [participante1, participante2] = participantes;
+
+console.log(participante1); // borja
+console.log(participante2); // juan 
+```
+
+En el caso de querer guardar los elementos restantes en otro array, se indica mediante el operadore rest (...)
+
+```javascript
+let participantes = ["Borja", "Juan", "Luis", "Jose"];
+
+let [participante1, participante2, ...resto] = participantes;
+
+console.log(participante1); // borja
+console.log(participante2); // juan
+console.log(resto); // [luis, jose]
+```
+
+## Operador rest para agregar elementos
+
+Como se ha visto en el punto anterior, la destructuración permite extraer información de objetos y arrays y asignarla en variables. Pero esta destructuración unida al tratamiento del resto de los elementos permite operaciones de modificacion de la estructura interna tanto de objetos como de arrays. Imaginemos el caso de querer agregar una nueva propiedad a un json con la destructuración. Sería con la siguiente sintaxis:
+
+```javascript
+let objetoBase = {
+  nombre: "base",
+  valor: 1000,
+};
+```
+
+Esta definición base del objeto puede ser cambiada de la siguiente forma
+
+```javascript
+objetoBase = { ...objetoBase, propiedadNueva: "Ejemplo" };
+console.log(objetoBase);
+```
+
+Lo mismo pasaría con los arrays
+
+```javascript
+
+let elementos = [1, 2, 3, 4, 5, 6, 7];
+let elementosNuevos = [...elementos, 8, 9, 0];
+
+console.log(elementosNuevos);
+```
+
+Incluso se podría combinar ambas modificaciones
+
+```javascript
+proyecto = {
+  nombre: "Desarrollo Web",
+  presupuesto: 10000,
+  participantes: ["Borja", "Juan", "Luis"],
+  agregarParticiante: function (particiapante) {
+    this.participantes.push(particiapante);
+  },
+};
+
+proyecto.participantes = [
+  ...proyecto.participantes,
+  { nombre: "BuevoIntegrante", apellido: "ApellidoNuevo" },
+];
+console.log(proyecto);
+
 ```
