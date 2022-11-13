@@ -1,10 +1,10 @@
-# Objetos
+# Objetivos
 
-Los módulos en javascript son pequeñas partes de código que pueden ser utilizadas desde cualquier fichero siempre y cuando estas sean tanto exportadas en origen como importadas en destino. Esto es bastante útil cuando los programas son grandes y requieren de mucho código. Juntarlo todo en el mismo fichero es bastante contraproducente ya que un fallo en parte de ese fichero dejaría sin funcionalidad al resto. No solo eso, sino que si se quiere mantener el código, hacerlo sobre pequeños fragmentos de código es mucho más sencillo que hacerlo sobre un bloque monolitico
+Los módulos en javascript son pequeñas partes de código que pueden ser utilizadas desde cualquier fichero siempre y cuando estas sean tanto exportadas en origen como importadas en destino. Esto es bastante útil cuando los programas son grandes y requieren de mucho código. Juntarlo todo en el mismo fichero es bastante contraproducente ya que un fallo en parte de ese fichero dejaría sin funcionalidad al resto. No solo eso, sino que si se quiere mantener el código, hacerlo sobre pequeños fragmentos de código es mucho más sencillo que hacerlo sobre un bloque monolítico
 
 Los objetivos de esta parte del tema son:
 
-- Crear módulos y utulizarlos
+- Crear módulos y utilizarlos
 - Importar y exportar partes de código
 
 # Contenidos
@@ -93,7 +93,7 @@ Saltaría un fallo indicando que no se puede ejecutar el constructor al no tener
     <script src="./js/index.js"></script>
 ```
 
-Sin embargo esto puede provocar infinidad de llamadas dentro de la página, lo que hace que las peticiones de red aumenten considerablemente. Para poder eliminar esta segunda llamanda, es donde entran los módulos. Para ello hay que indicar que el script index.js es de tipo module
+Sin embargo esto puede provocar infinidad de llamadas dentro de la página, lo que hace que las peticiones de red aumenten considerablemente. Para poder eliminar esta segunda llamada, es donde entran los módulos. Para ello hay que indicar que el script index.js es de tipo module
 
 ```javascript
 <script src="./js/index.js" type="module"></script>
@@ -174,7 +174,7 @@ export function tareaPesada(arrayTareas) {
 }
 ```
 
-En este fichero se han ubicado funciones que no son propias de las notas, sino que son del modelo. Ámbas están exoprtadas, para que el fichero que quiera utilizarlas las pueda importar. En nuestro caso las importaremos desde el fichero index.js
+En este fichero se han ubicado funciones que no son propias de las notas, sino que son del modelo. Ambas están exportadas, para que el fichero que quiera utilizarlas las pueda importar. En nuestro caso las importaremos desde el fichero index.js
 
 ```javascript
 // index.js
