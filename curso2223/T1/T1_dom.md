@@ -6,6 +6,13 @@
 - [Timers](#timers)
 - [Acceso al BOM y modificaciones](#acceso-al-bom-y-modificaciones)
 - [Almacenamiento web](#almacenamiento-web)
+- [Cookies](#cookies)
+  - [Parámetros que se pueden guardar en las cookies](#parámetros-que-se-pueden-guardar-en-las-cookies)
+  - [Uso de cookies](#uso-de-cookies)
+    - [Agregar elementos](#agregar-elementos)
+    - [Modificar elementos](#modificar-elementos)
+    - [Elimiar una cookie](#elimiar-una-cookie)
+    - [Buscar elementos en una cookie](#buscar-elementos-en-una-cookie)
 
 
 # DOM
@@ -990,3 +997,77 @@ No se trata de un método como tal sino de un evento, pero es interesante saber 
 ````
 
 [Volver al inicio](#index)
+
+# Cookies<a name="cookies"></a>
+
+Las cookies son un elemento de js que permite almacenar información obtenida desde diferentes fuentes en el cliente donde se ejecuta una URL. El formato que tienen las cookies siempre es el mismo, guardandose con un par clave valor, estando cada una de ellas separada por un ;. Una de las cosas importantes a tener en cuenta cuando se trabaja con cookies es que en realizad lo que se guarda es un objeto de tipo string.
+
+```xml
+nombre=<valor>; expires=<fecha>; max-age=<segundos>; path=<ruta>; domain=<dominio>; secure; httponly;
+```
+ ## Parámetros que se pueden guardar en las cookies<a name= "parametros>"></a>
+ Los parámetros que se pueden guardar en las cookies son los siguientes:
+
+ - nombre: indica el nombre de la propiedad. Para poder guardad una cookie el parámetro cookie es obligatorio
+
+```xml
+usuario=borja; 
+```
+
+- expires: indica la fecha hasta la cual tiene validez la cookie en cuestión en formato UTC / GMT. 
+
+```xml
+usuario=borja;expires=Mon Dec 19 2022 11:36:38 GMT+0100; 
+```
+Otros atributos los cuales nos podemos encontrar son: secure, HttpOnly, domain o path
+
+## Uso de cookies
+
+### Agregar elementos
+
+Para poder crear una cookie en el navegador se utiliza el atributo cookie desde la variable document, indicando cada uno de los elementos que se quieren guardad dentro de la cookie:
+
+```javascript
+  let fecha = new Date(2022, 11, 19, 12, 00).toString();
+  document.cookie = "usuario=Borja;expires=" + fecha;
+```
+
+Como ya se ha comentado, las cookies son elementos que van incrustadas en la url, por lo que los vales que vayan metidos dentro debería de estar codificados con el mismo sistema. Para ello es tan sencillo como utilizar el método encodeURIComponent dentro de la asociación del valor
+
+```javascript
+    document.cookie = `usuario=${encodeURIComponent("Borja")};expires=${new Date(
+    2022,
+    11,
+    19,
+    12,
+    00
+  ).toString()}`;
+```
+### Modificar elementos
+
+A la hora de modificar elementos que están guardados dentro de una cookie se hace exactamente igual que a la hora de añadirlos. Hay que tener en cuenta que cuando añadimos una cookie tal y como se explicó en el punto anterior lo que en realidad ocurre es que busca si alguna cookie de las ya existentes. En el caso de haberlo la modifica y en el caso de no encontrarla la crea.
+
+### Elimiar una cookie
+
+Para poder eliminar una cookie basta con modificar la fecha de expiración de aquella que queramos eliminar como Thu, 01 Jan 1970 00:00:00 UTC o directamente poner un max-age como 0. Vamos a suponer que en el sitema existe una cookie que tiene un nombre de Borja. En el caso de querer eliminarla bastaría con ejecutar el siguiente código
+
+### Buscar elementos en una cookie
+
+Para poder buscar valores dentro de una cookie no se existe un método como tal, tan solo existe la posibilidad de obtener el valor en string del elemento y tratarlo para obtener los datos. En realidad el proceso sería el siguiente
+
+- Obtengo todas las cookies y las parto por el caracter ;
+- Filtro la lista y me quedo solo con aquellos valores que cumplan la condicion de búsqueda
+
+Para poder hacer esto de forma recurrente nos podríamos crear un método para poder llamarlo cuando se dan determinadas condiciones
+
+```javascript
+function leerCookie(key) {
+  document.cookie.split(";").forEach((element) => {
+    let partido = element.trim().split("=");
+    if (partido[0] == key) {
+      console.log(partido[1]);
+    }
+  });
+```
+
+
