@@ -132,11 +132,26 @@ async function promesaPropia() {
   let numero = parseInt(Math.random() * 100);
   if (numero > 50) {
     return Promise.resolve(numero);
-  } else {
-    return Promise.reject("Pocas posibilidades");
-  }
+  } 
 }
 ````
+
+o lo que sería lo mismo 
+
+````javascript
+async function promesaPropia() {
+  let numero = parseInt(Math.random() * 100);
+
+  return new Promise((res, rej) => {
+    if (numero >= 50) {
+      res(numero);
+    } else {
+      rej("Pocas posibilidades");
+    }
+  });
+}
+````
+
 Como se puede ver el en código, en ningún momento se está retornando una promesa ya que eso se hace directamente con la palabra async. Lo que si se está haciendo es el trabajar con un retorno Promise.resolve() o Promise.reject() ya que en el caso de utilizar un return y el dato que se quiera responder, se convierte ese dato en el resolve
 
 En el caso de querer tratarla se realizaría de la siguiente forma
@@ -149,10 +164,213 @@ promesaPropia()
   .catch((err) => console.log(`${err}`));
 ````
 
-Al igual que antes, ha sido necesario el uso del then y el catch para obtener el resultado y ejecutar lo que se quiera sobre el mismo. 
+Al igual que antes, ha sido necesario el uso del then y el catch para obtener el resultado y ejecutar lo que se quiera sobre el mismo. No hay mucha diferencia hasta lo que hemos visto en anteriormente, solo que cambia un poco la sintaxis de las promesas. Sin embargo si cambia en el caso de querer utilizar la palabra reservada await
 
 
-- Await: este modificador se utiliza para obtener el resultado directo de una promesa. En el ejemplo anterior hemos tenido que poner el then y/o catch para tratar el resultado. en el caso de que solo se qiuera obtener el resultado se podría utilizar la palabra reservada await 
+- Await: este modificador se utiliza para obtener el resultado directo de una promesa. En el ejemplo anterior hemos tenido que poner el then y/o catch para tratar el resultado. En el caso de que solo se quiera obtener el resultado se podría utilizar la palabra reservada await es necesario que esta esté declarada dentro de una función async ya que para poder esperar un resultado no se sabe cuando se va a obtener. Teniendo el siguiente código:
+
+
+````javascript
+async function promesaPropia() {
+  let numero = parseInt(Math.random() * 100);
+  return new Promise((res, rej) => {
+    if (numero >= 50) {
+      res(numero);
+    } 
+  });
+}
+````
+
+Podemos ver como la función retorna una promesa que puede ser tratada como hasta este momento, o directamente con un await. Para ello necesitamos el siguiente código
+
+````javascript
+async function obtenerResultado() {
+  let resultado = await promesaPropia();
+  
+  
+}
+
+obtenerResultado();
+````
+La función obtenerResultado es asíncrona porque va a esperar al resultado de una promesa, tal y como indica la palabra await antes de llamar a la función promesaPropia. De esta forma se seguirán realizando ejecuciones completas hasta que el elemento de la promesa sea resuelto. El resultado por consola sera un número ya que solo tratamos el resolve de la promesa
 
 ## Fetch
+
+Un ejemplo típico de consumición de promesas son las funciones fetch, que no son más que promesas que ya están creadas en js y consumen un servicio web obteniendo un resultado o un error dependiendo de la respuesta que se obtenga del servidor. Una función fetch tiene la siguiente estructura:
+
+````javascript
+fetch("URL A CONSULTAR")
+  .then((res) => {})
+  .catch((rej) => {});
+````
+Como se puede ver es una promesa normal, con su tratamiento then y catch. La única diferencia es que se incorpora una url que es sobre la que se hace la consulta. En este ejemplo se utiliza la siguiente URL https://dummyjson.com/products , la cual contesta con una lista de productos en formato JSON. Para poder realizar la promesa y obtener el resultado utilizaríamos el siguiente código
+
+```javascript
+fetch("https://dummyjson.com/products")
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((rej) => {
+    console.log(`Ha habido algún tipo de fallo: ${rej}`);
+  });
+```
+
+En este caso entraría la promesa por el then ya que se resuelve correctamente y la salida por consola sería la siguiente
+
+````
+Response {type: 'cors', url: 'https://dummyjson.com/products', redirected: false, status: 200, ok: true, …}
+````
+
+Es algo raro, ya que esperabamos en json. La respuesta es otra promesa, ya que por defecto toda promesa contesta con otra promesa, y es esta la que hay que tratar para poder obtener el json con el que se quiere trabajar. Para ello haríamos lo siguiente:
+
+```javascript
+fetch("https://dummyjson.com/products")
+  .then((res) => {
+    return res.json();
+  })
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((rej) => {
+    console.log(`Ha habido algún tipo de fallo: ${rej}`);
+  });
+```
+
+Como se puede ver, el segundo then es el que muestra el json de la url y para ello ha tenido que esperar a que el primer tratamiento de la promesa convirtiese la respuesta en json y lo pasase como resultado. Es importante ver el uso del return en el primer then. En el caso en el que cualquiera de los dos then hubiesen fallado el catch se hubiese ejecutado
+
+En algunos casos nos podemos encontrar con que aunque sepamos que una url nos da un json ya que es un API que nosotros hemos programado o simplemente porque lo vemos en su documentación, la promesa me dá un fallo de CORS. Esto lo veremos más adelante pero básicamente es un fallo de seguridad que indica que la petición no puede ser realizada desde determinados dominios. Podéis ver un ejemplo con la url https://github.com/annexare/Countries/blob/master/data/countries.json, la cual si la consumimos con una función fetch nos dará un error de CORS. Para poder saltarnos ese error tenemos que ejecutar la url desde un servicio que incorpore una librería CORS como por ejemplo cors-anywhere. De esta forma la URL de la petición quedaría de la siguiente forma
+
+````
+https://cors-anywhere.herokuapp.com/https://github.com/annexare/Countries/blob/master/data/countries.json
+````
+
+Hasta aquí el tratamiento de una función fetch, pero como hemos visto podemos mejorar esta sintaxis utilizando las palabras async y await, obteniendo el resultado directamente. Para ello utilizaríamos el siguiente código
+
+```javascript
+async function obtenerProductos() {
+  let resultado = await fetch("https://dummyjson.com/products");
+  let resultadosJSON = resultado.json();
+  return resultadosJSON;
+}
+
+obtenerProductos().then((res) => {
+  console.log(res);
+});
+```
+
 ### Alterar el DOM con una función fetch
+
+Una vez se tiene la forma en la que se realiza una consulta sobre una URL, el siguiente paso sería utlizarlo dentro del dom de la página por ejemplo respresentando todos los elementos que están dentro de la misma. Para poder hacer esto simplemente sería evaluar el json obtenido y recorrer todo el conjunto de resultados sacando los datos que nos interesen para sacar el nodo correspondiente. Vamos a utilizar un dom con bootstrap cargado para poder trabajar con elementos de tipo carta y una estructura de filas columnas
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" id="productos"></div>
+    </div>
+  </body>
+  <script src="./js/index.js"></script>
+</html>
+```
+
+En el caso de querer consultar el mismo url que hemos visto antes el método sería el siguiente
+
+```javascript
+async function obtenerProductos() {
+  let resultado = await fetch("https://dummyjson.com/products");
+  let resultadosJSON = resultado.json();
+  return resultadosJSON;
+}
+```
+
+Una vez obtenidos los resultados tan solo quedará evaluar el json resultante y recorrer el array de resultados, sacando y creando nodos para poder incluir cada uno de los elementos dentro del html que se quiere crear. El json resultante tiene la siguiente estructura, donde products tienen infinidad de objetos (tan solo se ha puesto uno por temas de espacio)
+
+```json
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "iPhone 9",
+      "description": "An apple mobile which is nothing like apple",
+      "price": 549,
+      "discountPercentage": 12.96,
+      "rating": 4.69,
+      "stock": 94,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/1/1.jpg",
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/4.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ]
+    }
+  ],
+  "total": 100,
+  "skip": 0,
+  "limit": 30
+}
+```
+
+En este caso lo que nos interesa es recorrer el array con la key products, por lo que aplicaremos un foreach
+
+```javascript
+obtenerProductos().then((res) => {
+  res.products.forEach((element) => {
+    console.log(element);
+  });
+});
+```
+
+Lo último que quedaría sería alterar el innerHTML del nodo donde queramos agregar un elemento y ponerlo. En este caso el elemento que vamos a agregar es una carta con el siguiente formato
+
+```html
+<div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+```
+
+El código quedaría de la siguiente forma
+
+````javascript
+let fila = document.querySelector("#productos");
+obtenerProductos().then((res) => {
+  res.products.forEach((element) => {
+    fila.innerHTML += `<div class="col">
+    <div class="card m-4" style="width: 18rem;">
+    <img src="${element.images[0]}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${element.title}</h5>
+      <p class="card-text">${element.description}</p>
+    </div>
+  </div>
+  </div>`;
+  });
+});
+````
+
