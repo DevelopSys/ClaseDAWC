@@ -13,7 +13,7 @@ router.get("/selectAll", function (req, res, next) {
         .send({ code: 1, message: "Error en la conexion", error: err });
     } else {
       // query
-      conexionActual.query("SELECT * FROM usuarios", [], (err, data) => {
+      conexionActual.query("SELECT * FROM alumno", [], (err, data) => {
         if (err) {
           res.status(300).send({
             code: 2,

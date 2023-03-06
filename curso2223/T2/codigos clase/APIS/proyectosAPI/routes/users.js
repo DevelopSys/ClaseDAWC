@@ -10,21 +10,23 @@ router.get("/", function (req, res, next) {
 
 // https://localhost/users/all
 router.get("/all", function (req, res, next) {
-  res.send("respond with a resource");
+  res.send("respuesta a la pregunta all");
 });
 
-router.get("/cosas", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-// https://localhost/users/all
-router.get("/all", function (req, res, next) {
-  res.send("respond with a resource");
-  // 1.crear una conexion
-  // 2.Crear un schema - modelo (ORM -> Mongoose)
-  // 3. Ejeciciones sobre el modelo y/o las funciones en MySQL
-  // 4. Pasar a JSON la respuesta de la base de datos
-  res.json({ nombre: "ejemplo", cosa: "contestacion" });
+router.get("/seleccion", function (req, res, next) {
+  res.send({
+    status: 100,
+    results: [
+      { nombre: "borja", apellido: "Martin", edad: 20 },
+      { nombre: "juan", apellido: "Martin", edad: 20 },
+      ,
+      { nombre: "luis", apellido: "Martin", edad: 20 },
+      ,
+      { nombre: "marcos", apellido: "Martin", edad: 20 },
+      ,
+      { nombre: "jose", apellido: "Martin", edad: 20 },
+    ],
+  });
 });
 
 module.exports = router;
