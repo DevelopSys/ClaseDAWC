@@ -6,7 +6,7 @@ function ComponenteState() {
 
   const [elementos, setElementos] = useState([]);
   const [elementoInput, setElementoInput] = useState("");
-  const [peticionesFiltradas, setPeticionesFiltradas] = useState([])
+  const [peticionesFiltradas, setPeticionesFiltradas] = useState([]);
   //let peticionesFiltradas = [];
   /* const [elementoEmail, setElementoEmail] = useState("");
   const [elementoPass, setElementoPass] = useState("");
@@ -99,14 +99,12 @@ function ComponenteState() {
           //console.log(filtro);
           setPeticionesFiltradas(formularios.filter((e) => e.mail == filtro));
           //this.peticionesFiltradas = formularios.filter((e) => e.mail == filtro);
-          
         }}
       >
         Filtrar
       </button>
 
       {peticionesFiltradas.length === 0 ? (
-        
         <div class="alert alert-warning" role="alert">
           No hay coincidencias
         </div>
