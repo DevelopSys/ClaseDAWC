@@ -4,7 +4,7 @@ import { useFetch } from "../hooks/useFetch";
 //  "http://stranger-things-api.herokuapp.com/api/v1/characters?perPage=11"
 export const PersonajesEffect = () => {
   const consulta = useFetch(
-    "http://stranger-things-api.herokuapp.com/api/v1/characters?perPage=11"
+    "https://stranger-things-api.fly.dev/api/v1/characters?perPage=5?page=1"
   );
 
   // datos y carga
