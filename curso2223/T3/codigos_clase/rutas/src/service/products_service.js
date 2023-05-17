@@ -272,5 +272,6 @@ export function getAllProducts() {
 }
 
 export function getProductById(id) {
-  return products.find((e) => e.id == id);
+  
+    return products.find((e) => e.id == id);
 }
