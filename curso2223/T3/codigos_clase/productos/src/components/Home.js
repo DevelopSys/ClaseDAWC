@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../service/Productos";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
@@ -12,6 +14,8 @@ const Home = () => {
 
     //setProductos(getAllProducts());
   }, []);
+
+  const MySwal = withReactContent(Swal);
 
   console.log(productos);
 
