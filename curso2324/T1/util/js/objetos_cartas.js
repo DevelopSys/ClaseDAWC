@@ -7,9 +7,6 @@ for (let index = 0; index < 4; index++) {
     // for de la carta
     let carta = index1;
     switch (carta) {
-      case 1:
-        carta = "A";
-        break;
       case 11:
         carta = "J";
         break;
@@ -25,4 +22,4 @@ for (let index = 0; index < 4; index++) {
 }
 
 baraja = _.shuffle(baraja);
-console.log(baraja);
+//console.log(baraja);

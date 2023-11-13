@@ -15,7 +15,20 @@ class Carta {
   //2C
   //10C
   calcularValor() {
-    return this.nombre.substring(0, this.nombre.length - 1);
+    let valor = this.nombre.substring(0, this.nombre.length - 1);
+
+    switch (valor) {
+      case "K":
+      case "J":
+      case "Q":
+        valor = 10;
+        break;
+      default:
+        valor = Number(this.nombre.substring(0, this.nombre.length - 1));
+        break;
+    }
+
+    return valor;
   }
 
   mostrarDatos() {
