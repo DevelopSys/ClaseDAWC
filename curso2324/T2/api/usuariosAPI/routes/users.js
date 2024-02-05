@@ -41,6 +41,7 @@ router.get("/list/:nombre", function (req, res, next) {
 });
 
 router.put("/update/:id", function (req, res, next) {
+  console.log(req.params.id);
   res.send("actualizando usuario por id");
 });
 
