@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
-const Formulario = ({ listado }) => {
+const Formulario = ({ listado, modificacion }) => {
   const [precioBusqueda, setPrecioBusqueda] = useState(0);
   const [coche, setCoche] = useState({});
   const [coches, setCoches] = useState([]);
@@ -24,7 +25,7 @@ const Formulario = ({ listado }) => {
       setCoche((e) => {
         return { ...e, accesorios: accesorios };
       });
-      setCoches((e) => {
+      modificacion((e) => {
         return [...e, coche];
       });
       Swal.fire({

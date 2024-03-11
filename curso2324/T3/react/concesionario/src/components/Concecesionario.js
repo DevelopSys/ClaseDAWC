@@ -53,7 +53,7 @@ const Concecesionario = () => {
     <div className="container">
       <div className="row">
         <div className="col">
-          <Formulario listado={coches} />
+          <Formulario listado={coches} modificacion={setCoches} />
         </div>
         <div className="col">
           <Buscador listado={coches} />
