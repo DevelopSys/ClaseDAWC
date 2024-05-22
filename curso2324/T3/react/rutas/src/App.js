@@ -4,8 +4,11 @@ import { Route, Router, Routes, Link } from "react-router-dom";
 import ComponenteUno from "./components/ComponenteUno";
 import ComponenteDos from "./components/ComponenteDos";
 import ComponenteHome from "./components/ComponenteHome";
+import ComponenteComunicar from "./components/ComponenteComunicar";
+import { useState } from "react";
 
 function App() {
+  const [contador, setContador] = useState(0);
   return (
     <div className="App">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -45,13 +48,33 @@ function App() {
                   Componente dos
                 </Link>
               </li>
+              <li class="nav-item">
+                <Link className="nav-link" Link to={"/comunicar/" + contador}>
+                  Comunicar datos
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
+      <button
+        onClick={() => {
+          setContador(contador + 1);
+        }}
+      >
+        Incrementar
+      </button>
+      <button
+        onClick={() => {
+          setContador(contador - 1);
+        }}
+      >
+        Decrementar
+      </button>
       <Routes>
         <Route element={<ComponenteUno />} path="/compouno"></Route>
         <Route path="/compodos" element={<ComponenteDos />}></Route>
+        <Route path="/comunicar/:id?" element={<ComponenteComunicar />}></Route>
         <Route path="*" element={<ComponenteHome />}></Route>
       </Routes>
     </div>
