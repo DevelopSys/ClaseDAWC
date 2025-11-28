@@ -15,6 +15,11 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <main class="container">
@@ -23,6 +28,7 @@
         <button class="btn btn-primary col" id="btnAgregar">Agregar</button>
         <button class="btn btn-danger col" id="btnVaciar">Vaciar</button>
       </div>
+      <input type="tex" class="form-control" id="inputTexto" />
       <select class="form-select" id="selectLista">
         <option value="1">Lista 1</option>
         <option value="2">Lista 2</option>
@@ -30,22 +36,12 @@
       <div class="row mt-4">
         <div class="col" id="divLista1">
           <h2>Lista 1</h2>
-          <ul class="list-group" id="lista1">
-            <li class="list-group-item">Item 1</li>
-            <li class="list-group-item">Item 2</li>
-            <li class="list-group-item">Item 3</li>
-            <li class="list-group-item">Item 4</li>
-          </ul>
+          <ul class="list-group" id="lista1"></ul>
         </div>
         <div class="col" id="divLista2">
           <h2>Lista 2</h2>
 
-          <ul class="list-group" id="lista2">
-            <li class="list-group-item">Item 5</li>
-            <li class="list-group-item">Item 6</li>
-            <li class="list-group-item">Item 7</li>
-            <li class="list-group-item">Item 8</li>
-          </ul>
+          <ul class="list-group" id="lista2"></ul>
         </div>
       </div>
     </main>
