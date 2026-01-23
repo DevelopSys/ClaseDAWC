@@ -1,0 +1,23 @@
+<main class="container">
+  <h1>APP TRIVIAL</h1>
+  <div class="mt-4">
+    <input placeholder="introduce correo" class="form-control" #inputCorreo [(ngModel)]="correo" />
+    <input
+      placeholder="introduce pass"
+      type="password"
+      class="form-control mt-2"
+      #inputPass
+      [(ngModel)]="pass"
+    />
+    <button class="btn btn-primary mt-4" (click)="validarDatos(inputCorreo.value, inputPass.value)">
+      Validar
+    </button>
+
+    @if (validacion) {
+      <div class="mt-4">
+        <p>El correo es: {{ correo }}</p>
+        <p>La pass es: {{ pass }}</p>
+      </div>
+    }
+  </div>
+</main>
