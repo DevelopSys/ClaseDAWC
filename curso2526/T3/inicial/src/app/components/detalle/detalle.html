@@ -1,3 +1,18 @@
 @if (tipo != undefined) {
   <p>Nos disponemos a mostrar las tareas con una prioridad de {{ tipo }}</p>
 }
+
+@if (tareas.length > 0) {
+  <div class="alert alert-success">
+    El numero de tareas encontradas de tipo {{ tipo }} es de: {{ tareas.length }}
+  </div>
+  <ul class="list-group">
+    @for (item of tareas; track $index) {
+      <li class="list-group-item">
+        {{ item.titulo }} <button class="btn btn-primary">Ver detalle</button>
+      </li>
+    }
+  </ul>
+} @else {
+  <div class="alert alert-warning">No existen tareas de ese tipo</div>
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TareaJSON } from '../../model/tarea';
+import { TareasService } from '../../services/tareas-service';
 
 @Component({
   selector: 'app-listar',
@@ -7,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './listar.css',
 })
 export class Listar {
+  tareas: TareaJSON[] = [];
 
+  constructor(private tareaService: TareasService) {
+    this.tareas = this.tareaService.getAll();
+  }
 }

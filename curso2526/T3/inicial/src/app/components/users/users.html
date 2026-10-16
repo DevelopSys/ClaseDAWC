@@ -1,0 +1,21 @@
+<h2>Listado de usuarios</h2>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  @for (item of lista; track $index) {
+    <div class="card">
+      <img [src]="item.image" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ item.firstName }} {{ item.lastName }}</h5>
+        <p class="card-text">
+          {{ item.email }}
+        </p>
+        <a class="btn btn-primary" type="button" [routerLink]="['/detalle-user', item.id]"
+          >Ver detalle</a
+        >
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">{{ item.birthDate | date }}</small>
+      </div>
+    </div>
+  }
+</div>

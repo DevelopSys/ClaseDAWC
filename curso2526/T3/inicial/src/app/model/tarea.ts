@@ -14,19 +14,9 @@ export class Tarea {
 }
 
 export interface TareaJSON {
-  titulo: string;
-  fecha: Date;
-  prioridad: string;
-  responsable: string;
+  titulo?: string | null;
+  fecha?: string | null;
+  prioridad?: number;
+  responsable?: string | null;
+  items: string[];
 }
-
-let tarea1: Tarea = new Tarea('Tarea1', new Date(), 'alta', 'Borja');
-tarea1.getTitulo;
-
-let tarea2: TareaJSON = {
-  titulo: 'Tarea2',
-  fecha: new Date(),
-  prioridad: 'alta',
-  responsable: 'Borja',
-};
-tarea2.titulo;

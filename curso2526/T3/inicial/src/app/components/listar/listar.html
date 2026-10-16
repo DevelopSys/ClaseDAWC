@@ -1,1 +1,6 @@
-<p>listar works!</p>
+<h2 class="text-center"></h2>
+<ul class="list-group">
+  @for (item of tareas; track $index) {
+    <li class="list-group-item">{{ item.titulo }}</li>
+  }
+</ul>

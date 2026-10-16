@@ -1,1 +1,19 @@
-<p>agregar works!</p>
+<input placeholder="Introduce nombre tarea" class="form-control mb-3" [(ngModel)]="titulo" />
+<input
+  placeholder="Introduce responsable tarea"
+  class="form-control mb-3"
+  [(ngModel)]="responsable"
+/>
+<input
+  placeholder="Introduce fecha tarea"
+  type="date"
+  class="form-control mb-3"
+  [(ngModel)]="fecha"
+/>
+<select class="form-select mb-3" [(ngModel)]="prioridad">
+  <option value="-1">Selecciona una prioridad</option>
+  <option value="0">Baja</option>
+  <option value="1">Media</option>
+  <option value="2">Alta</option>
+</select>
+<button class="btn btn-primary" (click)="guardarDatos()">Guardar</button>

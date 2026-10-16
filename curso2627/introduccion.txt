@@ -1,0 +1,42 @@
+FrontEnd -> cliente / navegador - DOM (HTML + JS)
+
+	1. HTML + CSS (Bootstrap o Tailwind)
+
+		JS
+		index.html
+		<style>
+		</style>
+		<div>
+			<h1></h1>
+		</div>
+		<script src="./index.js">
+
+		index.js
+		 let elemento = document.querySelector(#id)
+
+		Promesas -> peticiones externas segundo plano
+
+		--------------------------------- html+js
+		        x-------------?
+
+		        json - fetch(API)
+	
+	2. Frameworks -> Librerias -> SPA
+
+		HTML + CSS + JS
+
+		index.html + index.js
+		form.html + form.js
+
+		index.html + index.js
+			componente -> c.html c.ts c.css
+
+		Angular / React / Vue
+
+
+	3. Lanzar
+		JWT + Servidores
+
+
+BackEnd -> Servidor
+	PHP / Python / Java / NodeJS
