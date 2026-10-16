@@ -1,0 +1,76 @@
+Back -> Servidor -> procesamiento datos -> API
+Front -> HTML + CSS (Bootstrap / Tailwind) + JS (DOM)
+
+1. JavaScript
+	Bases, DOM manipulacion, Promesas (fetch), Almacenamiento
+
+	index.html + index.js <a href="./contact.html"> document.navigate("asdasd")
+	contact.html + contact.js
+	maps.html + maps.js
+
+	la navegacion lleva a un refresco del navegador
+		Cada vez que el navegador se abre -> carga el DOM de la pagina
+		Cada vez que el navegador se refresca -> carga el DOM de la pagina
+
+
+	----------------------- memoria (cargando)
+
+
+2. Frameworks -> libreria js -> SPA -> vite
+
+	Angular -> componentes  TS -> JS
+
+	build -> index.html + index.js
+	parte de servidor -> express.js -> API
+
+	componente
+		html
+			binding
+		ts
+			binding
+		css
+	componente
+		html
+		ts
+		css
+
+	componente
+		html
+		ts
+		css
+
+	Inputs / Output
+
+
+	React JS -> jsx / TS -> tsx
+
+	let variable = "Hola"
+	let variable: string = "Hola"
+
+	build -> index.html + index.js
+
+	componentes funcionales
+
+		css
+		()=>{
+
+			ts -> hooks, useState useEffect
+			return <>{binding}</>
+
+		}
+
+		Props
+
+		React Native
+
+	Vue
+
+		componentes 
+			<style>
+			<template>
+			<script>
+		componentes
+		componentes
+		componentes
+
+
